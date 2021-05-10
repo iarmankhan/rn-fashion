@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
 import Animated, { multiply } from "react-native-reanimated";
 import {
@@ -19,6 +19,7 @@ const { width } = Dimensions.get("window");
 const BORDER_RADIUS = 75;
 
 const OnBoarding: React.FC<OnBoardingProps> = () => {
+  const scroll = useRef<Animated.ScrollView>(null);
   const x = useValue(0);
   const onScroll = onScrollEvent({ x });
 
@@ -31,6 +32,7 @@ const OnBoarding: React.FC<OnBoardingProps> = () => {
     <View style={styles.container}>
       <Animated.View style={[styles.slider, { backgroundColor }]}>
         <Animated.ScrollView
+          ref={scroll}
           horizontal
           snapToInterval={width}
           decelerationRate="fast"
@@ -63,6 +65,14 @@ const OnBoarding: React.FC<OnBoardingProps> = () => {
         >
           {slides.map(({ subtitle, description }, index) => (
             <SubSlide
+              onPress={() => {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                scroll.current?.scrollTo({
+                  x: (index + 1) * width,
+                  animated: true,
+                });
+              }}
               key={index.toString()}
               last={index === slides.length - 1}
               {...{ subtitle, description }}
