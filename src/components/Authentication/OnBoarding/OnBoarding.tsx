@@ -1,50 +1,22 @@
 import React from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
-import Animated from "react-native-reanimated";
+import Animated, { multiply } from "react-native-reanimated";
 import {
   interpolateColor,
   onScrollEvent,
   useValue,
 } from "react-native-redash/lib/module/v1";
 
+import { slides } from "../../../data/onBoardingSlides";
+
 import Slide, { SLIDE_HEIGHT } from "./Slide";
+import SubSlide from "./Subslide";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface OnBoardingProps {}
 
 const { width } = Dimensions.get("window");
 const BORDER_RADIUS = 75;
-
-const slides = [
-  {
-    title: "Relaxed",
-    color: "#BFEAF5",
-    subtitle: "Find Your Outfits",
-    description:
-      "Confused about your outfits? Don't worry find the best oufit here",
-  },
-  {
-    title: "Playful",
-    color: "#BEECC4",
-    subtitle: "Hear it First, Wear it First",
-    description:
-      "Hating the clothes in your wardrobe? Explore hundreds of ourfit ideas",
-  },
-  {
-    title: "Eccentric",
-    color: "#FFE4D9",
-    subtitle: "Your Style, Your Way",
-    description:
-      "Create your individuals & unique style and look amazing everyday",
-  },
-  {
-    title: "Funky",
-    color: "#FFDDDD",
-    subtitle: "Look Good, Feel Good",
-    description:
-      "Discover the best trends in fashion and explore your personality",
-  },
-];
 
 const OnBoarding: React.FC<OnBoardingProps> = () => {
   const x = useValue(0);
@@ -67,9 +39,9 @@ const OnBoarding: React.FC<OnBoardingProps> = () => {
           scrollEventThrottle={1}
           {...{ onScroll }}
         >
-          {slides.map((slide, index) => (
+          {slides.map(({ title }, index) => (
             <Slide
-              label={slide.title}
+              label={title}
               key={index.toString()}
               right={index % 2 !== 0}
             />
@@ -80,7 +52,23 @@ const OnBoarding: React.FC<OnBoardingProps> = () => {
         <Animated.View
           style={{ ...StyleSheet.absoluteFillObject, backgroundColor }}
         />
-        <View style={styles.footerContent} />
+        <Animated.View
+          style={[
+            styles.footerContent,
+            {
+              width: width * slides.length + 1,
+              transform: [{ translateX: multiply(x, -1) }],
+            },
+          ]}
+        >
+          {slides.map(({ subtitle, description }, index) => (
+            <SubSlide
+              key={index.toString()}
+              last={index === slides.length - 1}
+              {...{ subtitle, description }}
+            />
+          ))}
+        </Animated.View>
       </View>
     </View>
   );
@@ -100,6 +88,7 @@ const styles = StyleSheet.create({
   },
   footerContent: {
     flex: 1,
+    flexDirection: "row",
     backgroundColor: "white",
     borderTopLeftRadius: BORDER_RADIUS,
   },
