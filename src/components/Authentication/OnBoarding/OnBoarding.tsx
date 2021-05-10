@@ -1,12 +1,12 @@
 import React from "react";
 import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
 
-import Slide from "./Slide";
+import Slide, { SLIDE_HEIGHT } from "./Slide";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface OnBoardingProps {}
 
-const { width, height } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
 
 const OnBoarding: React.FC<OnBoardingProps> = () => {
   return (
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   slider: {
-    height: 0.61 * height,
+    height: SLIDE_HEIGHT,
     backgroundColor: "cyan",
     borderBottomRightRadius: 75,
   },
