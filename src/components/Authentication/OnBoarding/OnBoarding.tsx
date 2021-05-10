@@ -1,13 +1,38 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
+
+import Slide from "./Slide";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface OnBoardingProps {}
 
+const { width, height } = Dimensions.get("window");
+
 const OnBoarding: React.FC<OnBoardingProps> = () => {
   return (
     <View style={styles.container}>
-      <Text>OnBoarding</Text>
+      <View style={styles.slider}>
+        <ScrollView
+          horizontal
+          snapToInterval={width}
+          decelerationRate="fast"
+          showsHorizontalScrollIndicator={false}
+          bounces={false}
+        >
+          <Slide label="Relaxed" />
+          <Slide label="Playful" right />
+          <Slide label="Eccentric" />
+          <Slide label="Funky" right />
+        </ScrollView>
+      </View>
+      <View style={styles.footer}>
+        <View
+          style={{ ...StyleSheet.absoluteFillObject, backgroundColor: "cyan" }}
+        />
+        <View
+          style={{ flex: 1, backgroundColor: "white", borderTopLeftRadius: 75 }}
+        />
+      </View>
     </View>
   );
 };
@@ -15,9 +40,15 @@ const OnBoarding: React.FC<OnBoardingProps> = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    fontFamily: "SFProText",
+    backgroundColor: "white",
+  },
+  slider: {
+    height: 0.61 * height,
+    backgroundColor: "cyan",
+    borderBottomRightRadius: 75,
+  },
+  footer: {
+    flex: 1,
   },
 });
 
