@@ -21,6 +21,8 @@ import { Routes, StackNavigationProps } from "src/types/navigation";
 
 const { width } = Dimensions.get("window");
 
+export const onBoardingAssets = slides.map((slide) => slide.picture.src);
+
 const OnBoarding: React.FC<StackNavigationProps<Routes, "OnBoarding">> = ({
   navigation,
 }) => {

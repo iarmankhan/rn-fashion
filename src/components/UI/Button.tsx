@@ -7,7 +7,7 @@ import { Text } from "src/theme/Theme";
 
 interface ButtonProps {
   label: string;
-  variant?: "primary" | "default";
+  variant?: "primary" | "default" | "transparent";
   onPress: () => void;
 }
 
@@ -17,9 +17,15 @@ const Button: React.FC<ButtonProps> = ({
   label,
 }) => {
   const theme = useTheme<Theme>();
+
+  // TODO: improve this
   const backgroundColor =
-    variant === "primary" ? theme.colors.primary : theme.colors.grey;
-  const color = variant === "primary" ? theme.colors.white : theme.colors.text;
+    variant === "primary"
+      ? theme.colors.primary
+      : variant === "transparent"
+      ? "transparent"
+      : theme.colors.grey;
+  const color = variant === "primary" ? theme.colors.white : theme.colors.title;
 
   return (
     <RectButton
