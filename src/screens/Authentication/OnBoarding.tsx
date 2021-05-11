@@ -17,13 +17,13 @@ import Slide, {
 import SubSlide from "src/components/Authentication/OnBoarding/Subslide";
 import { slides } from "src/data/onBoardingSlides";
 import theme from "src/theme";
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface OnBoardingProps {}
+import { Routes, StackNavigationProps } from "src/types/navigation";
 
 const { width } = Dimensions.get("window");
 
-const OnBoarding: React.FC<OnBoardingProps> = () => {
+const OnBoarding: React.FC<StackNavigationProps<Routes, "OnBoarding">> = ({
+  navigation,
+}) => {
   const scroll = useRef<Animated.ScrollView>(null);
   const { scrollHandler, x } = useScrollHandler();
 
@@ -95,21 +95,27 @@ const OnBoarding: React.FC<OnBoardingProps> = () => {
               transform: [{ translateX: multiply(x, -1) }],
             }}
           >
-            {slides.map(({ subtitle, description }, index) => (
-              <SubSlide
-                onPress={() => {
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  // @ts-ignore
-                  scroll.current?.scrollTo({
-                    x: (index + 1) * width,
-                    animated: true,
-                  });
-                }}
-                key={index.toString()}
-                last={index === slides.length - 1}
-                {...{ subtitle, description }}
-              />
-            ))}
+            {slides.map(({ subtitle, description }, index) => {
+              const last = index === slides.length - 1;
+              return (
+                <SubSlide
+                  onPress={() => {
+                    if (last) {
+                      navigation.navigate("Welcome");
+                    } else {
+                      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                      // @ts-ignore
+                      scroll.current?.scrollTo({
+                        x: (index + 1) * width,
+                        animated: true,
+                      });
+                    }
+                  }}
+                  key={index.toString()}
+                  {...{ subtitle, description, last }}
+                />
+              );
+            })}
           </Animated.View>
         </View>
       </View>

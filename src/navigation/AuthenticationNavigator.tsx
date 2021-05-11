@@ -2,8 +2,9 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import OnBoarding from "src/screens/Authentication/OnBoarding";
 import Welcome from "src/screens/Authentication/Welcome";
+import { Routes } from "src/types/navigation";
 
-const AuthenticationStack = createStackNavigator();
+const AuthenticationStack = createStackNavigator<Routes>();
 
 const AuthenticationNavigator = () => {
   return (
