@@ -1,10 +1,11 @@
 import React, { useRef } from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
-import Animated, { multiply } from "react-native-reanimated";
+import Animated, { divide, multiply } from "react-native-reanimated";
 import {
   interpolateColor,
   useScrollHandler,
 } from "react-native-redash/lib/module/v1";
+import Dot from "src/components/Authentication/OnBoarding/Dot";
 import { slides } from "src/data/onBoardingSlides";
 
 import Slide, { SLIDE_HEIGHT } from "./Slide";
@@ -50,31 +51,36 @@ const OnBoarding: React.FC<OnBoardingProps> = () => {
         <Animated.View
           style={{ ...StyleSheet.absoluteFillObject, backgroundColor }}
         />
-        <Animated.View
-          style={[
-            styles.footerContent,
-            {
-              width: width * slides.length + 1,
+        <View style={styles.footerContent}>
+          <View style={styles.pagination}>
+            {slides.map((_, index) => (
+              <Dot key={index} currentIndex={divide(x, width)} {...{ index }} />
+            ))}
+          </View>
+          <Animated.View
+            style={{
+              flex: 1,
+              flexDirection: "row",
               transform: [{ translateX: multiply(x, -1) }],
-            },
-          ]}
-        >
-          {slides.map(({ subtitle, description }, index) => (
-            <SubSlide
-              onPress={() => {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                scroll.current?.scrollTo({
-                  x: (index + 1) * width,
-                  animated: true,
-                });
-              }}
-              key={index.toString()}
-              last={index === slides.length - 1}
-              {...{ subtitle, description }}
-            />
-          ))}
-        </Animated.View>
+            }}
+          >
+            {slides.map(({ subtitle, description }, index) => (
+              <SubSlide
+                onPress={() => {
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
+                  scroll.current?.scrollTo({
+                    x: (index + 1) * width,
+                    animated: true,
+                  });
+                }}
+                key={index.toString()}
+                last={index === slides.length - 1}
+                {...{ subtitle, description }}
+              />
+            ))}
+          </Animated.View>
+        </View>
       </View>
     </View>
   );
@@ -94,9 +100,15 @@ const styles = StyleSheet.create({
   },
   footerContent: {
     flex: 1,
-    flexDirection: "row",
     backgroundColor: "white",
     borderTopLeftRadius: BORDER_RADIUS,
+  },
+  pagination: {
+    ...StyleSheet.absoluteFillObject,
+    height: BORDER_RADIUS,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

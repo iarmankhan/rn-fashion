@@ -31,10 +31,8 @@ const SubSlide: React.FC<SubSlideProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: "center",
     justifyContent: "center",
-
     padding: 44,
   },
   subtitle: {
