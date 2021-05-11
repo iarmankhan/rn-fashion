@@ -1,11 +1,21 @@
 import React from "react";
-import { Dimensions, Image, StyleSheet, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  ImageRequireSource,
+  StyleSheet,
+  View,
+} from "react-native";
 import { Text } from "src/theme/Theme";
 
 interface SlideProps {
   title: string;
   right?: boolean;
-  picture: number;
+  picture: {
+    src: ImageRequireSource;
+    width: number;
+    height: number;
+  };
 }
 
 const { width, height } = Dimensions.get("window");
@@ -25,7 +35,13 @@ const Slide: React.FC<SlideProps> = ({ title, right, picture }) => {
   return (
     <View style={styles.container}>
       <View style={styles.underlay}>
-        <Image source={picture} style={styles.picture} />
+        <Image
+          source={picture.src}
+          style={{
+            width: width - BORDER_RADIUS,
+            height: ((width - BORDER_RADIUS) * picture.height) / picture.width,
+          }}
+        />
       </View>
       <View
         style={[
@@ -48,13 +64,8 @@ const styles = StyleSheet.create({
   },
   underlay: {
     ...StyleSheet.absoluteFillObject,
+    alignItems: "center",
     justifyContent: "flex-end",
-  },
-  picture: {
-    ...StyleSheet.absoluteFillObject,
-    width: undefined,
-    height: undefined,
-    borderBottomRightRadius: BORDER_RADIUS,
   },
   titleContainer: {
     height: 100,
