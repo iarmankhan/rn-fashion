@@ -3,11 +3,9 @@ import { Dimensions, StyleSheet, View } from "react-native";
 import Animated, { multiply } from "react-native-reanimated";
 import {
   interpolateColor,
-  onScrollEvent,
-  useValue,
+  useScrollHandler,
 } from "react-native-redash/lib/module/v1";
-
-import { slides } from "../../../data/onBoardingSlides";
+import { slides } from "src/data/onBoardingSlides";
 
 import Slide, { SLIDE_HEIGHT } from "./Slide";
 import SubSlide from "./Subslide";
@@ -20,8 +18,7 @@ const BORDER_RADIUS = 75;
 
 const OnBoarding: React.FC<OnBoardingProps> = () => {
   const scroll = useRef<Animated.ScrollView>(null);
-  const x = useValue(0);
-  const onScroll = onScrollEvent({ x });
+  const { scrollHandler, x } = useScrollHandler();
 
   const backgroundColor = interpolateColor(x, {
     inputRange: slides.map((_, i) => i * width),
@@ -38,8 +35,7 @@ const OnBoarding: React.FC<OnBoardingProps> = () => {
           decelerationRate="fast"
           showsHorizontalScrollIndicator={false}
           bounces={false}
-          scrollEventThrottle={1}
-          {...{ onScroll }}
+          {...scrollHandler}
         >
           {slides.map(({ title }, index) => (
             <Slide
