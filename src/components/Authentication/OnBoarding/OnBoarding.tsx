@@ -8,14 +8,13 @@ import {
 import Dot from "src/components/Authentication/OnBoarding/Dot";
 import { slides } from "src/data/onBoardingSlides";
 
-import Slide, { SLIDE_HEIGHT } from "./Slide";
+import Slide, { SLIDE_HEIGHT, BORDER_RADIUS } from "./Slide";
 import SubSlide from "./Subslide";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface OnBoardingProps {}
 
 const { width } = Dimensions.get("window");
-const BORDER_RADIUS = 75;
 
 const OnBoarding: React.FC<OnBoardingProps> = () => {
   const scroll = useRef<Animated.ScrollView>(null);
@@ -38,11 +37,11 @@ const OnBoarding: React.FC<OnBoardingProps> = () => {
           bounces={false}
           {...scrollHandler}
         >
-          {slides.map(({ title }, index) => (
+          {slides.map(({ title, picture }, index) => (
             <Slide
-              label={title}
               key={index.toString()}
               right={index % 2 !== 0}
+              {...{ picture, title }}
             />
           ))}
         </Animated.ScrollView>
