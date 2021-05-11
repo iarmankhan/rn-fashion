@@ -12,11 +12,11 @@ import {
 } from "react-native-redash/lib/module/v1";
 import Dot from "src/components/Authentication/OnBoarding/Dot";
 import Slide, {
-  BORDER_RADIUS,
   SLIDE_HEIGHT,
 } from "src/components/Authentication/OnBoarding/Slide";
 import SubSlide from "src/components/Authentication/OnBoarding/Subslide";
 import { slides } from "src/data/onBoardingSlides";
+import theme from "src/theme";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface OnBoardingProps {}
@@ -50,9 +50,10 @@ const OnBoarding: React.FC<OnBoardingProps> = () => {
               <Image
                 source={picture.src}
                 style={{
-                  width: width - BORDER_RADIUS,
+                  width: width - theme.borderRadii.xl,
                   height:
-                    ((width - BORDER_RADIUS) * picture.height) / picture.width,
+                    ((width - theme.borderRadii.xl) * picture.height) /
+                    picture.width,
                 }}
               />
             </Animated.View>
@@ -126,11 +127,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-end",
     overflow: "hidden",
-    borderBottomRightRadius: BORDER_RADIUS,
+    borderBottomRightRadius: theme.borderRadii.xl,
   },
   slider: {
     height: SLIDE_HEIGHT,
-    borderBottomRightRadius: BORDER_RADIUS,
+    borderBottomRightRadius: theme.borderRadii.xl,
   },
   footer: {
     flex: 1,
@@ -138,11 +139,11 @@ const styles = StyleSheet.create({
   footerContent: {
     flex: 1,
     backgroundColor: "white",
-    borderTopLeftRadius: BORDER_RADIUS,
+    borderTopLeftRadius: theme.borderRadii.xl,
   },
   pagination: {
     ...StyleSheet.absoluteFillObject,
-    height: BORDER_RADIUS,
+    height: theme.borderRadii.xl,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
