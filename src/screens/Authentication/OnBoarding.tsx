@@ -6,10 +6,12 @@ import {
   useScrollHandler,
 } from "react-native-redash/lib/module/v1";
 import Dot from "src/components/Authentication/OnBoarding/Dot";
+import SubSlide from "src/components/Authentication/OnBoarding/Subslide";
 import { slides } from "src/data/onBoardingSlides";
-
-import Slide, { SLIDE_HEIGHT, BORDER_RADIUS } from "./Slide";
-import SubSlide from "./Subslide";
+import Slide, {
+  SLIDE_HEIGHT,
+  BORDER_RADIUS,
+} from "src/components/Authentication/OnBoarding/Slide";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface OnBoardingProps {}
