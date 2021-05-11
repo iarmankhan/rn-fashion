@@ -1,17 +1,22 @@
 import React, { useRef } from "react";
-import { Dimensions, StyleSheet, View } from "react-native";
-import Animated, { divide, multiply } from "react-native-reanimated";
+import { Dimensions, Image, StyleSheet, View } from "react-native";
+import Animated, {
+  divide,
+  interpolateNode,
+  multiply,
+  Extrapolate,
+} from "react-native-reanimated";
 import {
   interpolateColor,
   useScrollHandler,
 } from "react-native-redash/lib/module/v1";
 import Dot from "src/components/Authentication/OnBoarding/Dot";
+import Slide, {
+  BORDER_RADIUS,
+  SLIDE_HEIGHT,
+} from "src/components/Authentication/OnBoarding/Slide";
 import SubSlide from "src/components/Authentication/OnBoarding/Subslide";
 import { slides } from "src/data/onBoardingSlides";
-import Slide, {
-  SLIDE_HEIGHT,
-  BORDER_RADIUS,
-} from "src/components/Authentication/OnBoarding/Slide";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface OnBoardingProps {}
@@ -30,6 +35,30 @@ const OnBoarding: React.FC<OnBoardingProps> = () => {
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.slider, { backgroundColor }]}>
+        {slides.map(({ picture }, index) => {
+          const opacity = interpolateNode(x, {
+            inputRange: [
+              (index - 0.5) * width,
+              index * width,
+              (index + 0.5) * width,
+            ],
+            outputRange: [0, 1, 0],
+            extrapolate: Extrapolate.CLAMP,
+          });
+          return (
+            <Animated.View key={index} style={[styles.underlay, { opacity }]}>
+              <Image
+                source={picture.src}
+                style={{
+                  width: width - BORDER_RADIUS,
+                  height:
+                    ((width - BORDER_RADIUS) * picture.height) / picture.width,
+                }}
+              />
+            </Animated.View>
+          );
+        })}
+
         <Animated.ScrollView
           ref={scroll}
           horizontal
@@ -39,11 +68,11 @@ const OnBoarding: React.FC<OnBoardingProps> = () => {
           bounces={false}
           {...scrollHandler}
         >
-          {slides.map(({ title, picture }, index) => (
+          {slides.map(({ title }, index) => (
             <Slide
               key={index.toString()}
               right={index % 2 !== 0}
-              {...{ picture, title }}
+              {...{ title }}
             />
           ))}
         </Animated.ScrollView>
@@ -91,6 +120,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+  },
+  underlay: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: "center",
+    justifyContent: "flex-end",
+    overflow: "hidden",
+    borderBottomRightRadius: BORDER_RADIUS,
   },
   slider: {
     height: SLIDE_HEIGHT,
