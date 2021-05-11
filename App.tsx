@@ -1,5 +1,7 @@
 import "react-native-gesture-handler";
 import * as React from "react";
+import { ThemeProvider } from "@shopify/restyle";
+import theme from "src/theme";
 
 import AuthenticationNavigator from "./src/navigation/AuthenticationNavigator";
 import LoadAssets from "./src/components/LoadAssets";
@@ -13,7 +15,9 @@ const fonts = {
 export default function App() {
   return (
     <LoadAssets {...{ fonts }}>
-      <AuthenticationNavigator />
+      <ThemeProvider {...{ theme }}>
+        <AuthenticationNavigator />
+      </ThemeProvider>
     </LoadAssets>
   );
 }
