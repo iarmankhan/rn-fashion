@@ -6,15 +6,17 @@ import { Theme } from "src/theme";
 import { Text } from "src/theme/Theme";
 
 interface ButtonProps {
-  label: string;
+  label?: string;
   variant?: "primary" | "default" | "transparent";
   onPress: () => void;
+  children?: React.ReactNode;
 }
 
 const Button: React.FC<ButtonProps> = ({
   variant = "default",
   onPress,
   label,
+  children,
 }) => {
   const theme = useTheme<Theme>();
 
@@ -33,9 +35,13 @@ const Button: React.FC<ButtonProps> = ({
       style={[styles.container, { backgroundColor }]}
       {...{ onPress }}
     >
-      <Text variant="button" style={{ color }}>
-        {label}
-      </Text>
+      {children ? (
+        children
+      ) : (
+        <Text variant="button" style={{ color }}>
+          {label}
+        </Text>
+      )}
     </RectButton>
   );
 };

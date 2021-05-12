@@ -4,6 +4,7 @@ import { ThemeProvider } from "@shopify/restyle";
 import { onBoardingAssets } from "src/screens/Authentication/OnBoarding";
 import { welcomeAssets } from "src/screens/Authentication/Welcome";
 import theme from "src/theme";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import AuthenticationNavigator from "./src/navigation/AuthenticationNavigator";
 import LoadAssets from "./src/components/LoadAssets";
@@ -21,7 +22,9 @@ export default function App() {
   return (
     <LoadAssets {...{ fonts, assets }}>
       <ThemeProvider {...{ theme }}>
-        <AuthenticationNavigator />
+        <SafeAreaProvider>
+          <AuthenticationNavigator />
+        </SafeAreaProvider>
       </ThemeProvider>
     </LoadAssets>
   );
