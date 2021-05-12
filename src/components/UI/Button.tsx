@@ -25,7 +25,8 @@ const Button: React.FC<ButtonProps> = ({
       : variant === "transparent"
       ? "transparent"
       : theme.colors.grey;
-  const color = variant === "primary" ? theme.colors.white : theme.colors.title;
+  const color =
+    variant === "primary" ? theme.colors.white : theme.colors.secondary;
 
   return (
     <RectButton
