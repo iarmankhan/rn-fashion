@@ -2,7 +2,6 @@ import { useFormik } from "formik";
 import React, { useRef } from "react";
 import { TextInput as RNTextInput } from "react-native";
 import AuthFooter from "src/components/Authentication/AuthFooter";
-import CheckBox from "src/components/Form/CheckBox";
 import TextInput from "src/components/Form/TextInput";
 import Button from "src/components/UI/Button";
 import Container from "src/components/UI/Container";
@@ -10,48 +9,45 @@ import { Box, Text } from "src/theme/Theme";
 import { Routes, StackNavigationProps } from "src/types/navigation";
 import * as Yup from "yup";
 
-const LoginSchema = Yup.object().shape({
+const SignUpSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
   password: Yup.string()
     .min(6, "Too Short!")
     .max(20, "Too Long!")
     .required("Required"),
+  passwordConfirmation: Yup.string()
+    .equals([Yup.ref("password")], "Passwords don't match")
+    .required("Required"),
 });
 
-const Login: React.FC<StackNavigationProps<Routes, "Login">> = ({
+const SignUp: React.FC<StackNavigationProps<Routes, "SignUp">> = ({
   navigation,
 }) => {
-  const {
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    values,
-    errors,
-    touched,
-    setFieldValue,
-  } = useFormik({
-    validationSchema: LoginSchema,
-    initialValues: { email: "", password: "", remember: false },
-    onSubmit: (data) => console.log(data),
-  });
+  const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
+    useFormik({
+      validationSchema: SignUpSchema,
+      initialValues: { email: "", password: "", passwordConfirmation: "" },
+      onSubmit: (data) => console.log(data),
+    });
   const password = useRef<RNTextInput>(null);
+  const passwordConfirmation = useRef<RNTextInput>(null);
 
   return (
     <Container
       footer={
         <AuthFooter
-          title="Don't have an account?"
-          onPress={() => navigation.navigate("SignUp")}
-          action="Sign up here"
+          title="Already have an account?"
+          onPress={() => navigation.navigate("Login")}
+          action="Login here"
         />
       }
     >
       <Box padding="xl">
         <Text variant="title1" textAlign="center" marginBottom="l">
-          Welcome Back
+          Create account
         </Text>
         <Text variant="body" textAlign="center" marginBottom="l">
-          Use your credentials below and login to your account
+          Let's us know what your name, email and your password
         </Text>
 
         <Box>
@@ -85,25 +81,33 @@ const Login: React.FC<StackNavigationProps<Routes, "Login">> = ({
               touched={touched.password}
               autoCompleteType="password"
               autoCapitalize="none"
+              returnKeyType="next"
+              returnKeyLabel="next"
+              onSubmitEditing={() => passwordConfirmation.current?.focus()}
+            />
+          </Box>
+
+          <Box marginBottom="m">
+            <TextInput
+              ref={passwordConfirmation}
+              icon="lock"
+              placeholder="Confirm password"
+              secureTextEntry
+              onChangeText={handleChange("passwordConfirmation")}
+              onBlur={handleBlur("passwordConfirmation")}
+              value={values.passwordConfirmation}
+              error={errors.passwordConfirmation}
+              touched={touched.passwordConfirmation}
+              autoCompleteType="password"
+              autoCapitalize="none"
               returnKeyType="done"
               returnKeyLabel="go"
               onSubmitEditing={() => handleSubmit()}
             />
           </Box>
 
-          <Box flexDirection="row" justifyContent="space-between">
-            <CheckBox
-              label="Remember me"
-              checked={values.remember}
-              onChange={(v) => setFieldValue("remember", v)}
-            />
-            <Button onPress={() => true} variant="transparent">
-              <Text color="primary">Forgot Password</Text>
-            </Button>
-          </Box>
-
           <Box alignItems="center" marginTop="m">
-            <Button onPress={handleSubmit} variant="primary" label="Login" />
+            <Button onPress={handleSubmit} variant="primary" label="SignUp" />
           </Box>
         </Box>
       </Box>
@@ -111,4 +115,4 @@ const Login: React.FC<StackNavigationProps<Routes, "Login">> = ({
   );
 };
 
-export default Login;
+export default SignUp;
