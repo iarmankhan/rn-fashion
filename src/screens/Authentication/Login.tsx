@@ -6,6 +6,15 @@ import Container from "src/components/UI/Container";
 import TextInput from "src/components/Form/TextInput";
 import { Box, Text } from "src/theme/Theme";
 import { Formik } from "formik";
+import * as Yup from "yup";
+
+const LoginSchema = Yup.object().shape({
+  email: Yup.string().email("Invalid email").required("Required"),
+  password: Yup.string()
+    .min(6, "Too Short!")
+    .max(20, "Too Long!")
+    .required("Required"),
+});
 
 const Login: React.FC = () => {
   const footer = (
@@ -36,10 +45,19 @@ const Login: React.FC = () => {
         </Text>
 
         <Formik
-          initialValues={{ email: "", password: "" }}
+          validationSchema={LoginSchema}
+          initialValues={{ email: "", password: "", remember: false }}
           onSubmit={(values) => console.log(values)}
         >
-          {({ handleChange, handleBlur, handleSubmit, values }) => (
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            touched,
+            setFieldValue,
+          }) => (
             <Box>
               <Box marginBottom="m">
                 <TextInput
@@ -48,6 +66,8 @@ const Login: React.FC = () => {
                   onChangeText={handleChange("email")}
                   onBlur={handleBlur("email")}
                   value={values.email}
+                  error={errors.email}
+                  touched={touched.email}
                 />
               </Box>
 
@@ -59,11 +79,17 @@ const Login: React.FC = () => {
                   onChangeText={handleChange("password")}
                   onBlur={handleBlur("password")}
                   value={values.password}
+                  error={errors.password}
+                  touched={touched.password}
                 />
               </Box>
 
               <Box flexDirection="row" justifyContent="space-between">
-                <CheckBox label="Remember me" />
+                <CheckBox
+                  label="Remember me"
+                  checked={values.remember}
+                  onChange={(v) => setFieldValue("remember", v)}
+                />
                 <Button onPress={() => true} variant="transparent">
                   <Text color="primary">Forgot Password</Text>
                 </Button>

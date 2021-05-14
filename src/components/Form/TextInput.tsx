@@ -10,12 +10,19 @@ import { Box } from "src/theme/Theme";
 
 interface TextInputProps extends RNTextInputProps {
   icon: string;
+  touched?: boolean;
+  error?: string;
 }
 
 const SIZE = theme.borderRadii.m * 2;
 
-const TextInput: React.FC<TextInputProps> = ({ icon, ...props }) => {
-  const reColor = "text";
+const TextInput: React.FC<TextInputProps> = ({
+  icon,
+  touched,
+  error,
+  ...props
+}) => {
+  const reColor = touched ? "text" : error ? "danger" : "primary";
   const color = theme.colors[reColor];
 
   return (
@@ -38,16 +45,16 @@ const TextInput: React.FC<TextInputProps> = ({ icon, ...props }) => {
           {...props}
         />
       </Box>
-      {false && (
+      {touched && (
         <Box
           borderRadius="l"
           height={SIZE}
           width={SIZE}
-          backgroundColor={true ? "primary" : "danger"}
+          backgroundColor={!error ? "primary" : "danger"}
           alignItems="center"
           justifyContent="center"
         >
-          <Icon name={true ? "check" : "x"} size={16} color="white" />
+          <Icon name={!error ? "check" : "x"} size={16} color="white" />
         </Box>
       )}
     </Box>
