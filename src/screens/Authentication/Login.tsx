@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
-import React from "react";
+import React, { useRef } from "react";
+import { TextInput as RNTextInput } from "react-native";
 import AuthFooter from "src/components/Authentication/AuthFooter";
 import CheckBox from "src/components/Form/CheckBox";
 import TextInput from "src/components/Form/TextInput";
@@ -30,6 +31,7 @@ const Login: React.FC = () => {
     initialValues: { email: "", password: "", remember: false },
     onSubmit: (data) => console.log(data),
   });
+  const password = useRef<RNTextInput>(null);
 
   return (
     <Container
@@ -59,11 +61,17 @@ const Login: React.FC = () => {
               value={values.email}
               error={errors.email}
               touched={touched.email}
+              autoCompleteType="email"
+              autoCapitalize={"none"}
+              returnKeyType="next"
+              returnKeyLabel="next"
+              onSubmitEditing={() => password.current?.focus()}
             />
           </Box>
 
           <Box marginBottom="m">
             <TextInput
+              ref={password}
               icon="lock"
               placeholder="Enter your password"
               secureTextEntry
@@ -72,6 +80,11 @@ const Login: React.FC = () => {
               value={values.password}
               error={errors.password}
               touched={touched.password}
+              autoCompleteType="password"
+              autoCapitalize="none"
+              returnKeyType="done"
+              returnKeyLabel="go"
+              onSubmitEditing={() => handleSubmit()}
             />
           </Box>
 

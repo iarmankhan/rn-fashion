@@ -1,5 +1,5 @@
 import { Feather as Icon } from "@expo/vector-icons";
-import React from "react";
+import React, { ForwardedRef, forwardRef } from "react";
 import {
   StyleSheet,
   TextInput as RNTextInput,
@@ -14,52 +14,53 @@ interface TextInputProps extends RNTextInputProps {
   error?: string;
 }
 
-const TextInput: React.FC<TextInputProps> = ({
-  icon,
-  touched,
-  error,
-  ...props
-}) => {
-  const theme = useTheme();
-  const SIZE = theme.borderRadii.m * 2.5;
-  // eslint-disable-next-line no-nested-ternary
-  const reColor = touched ? "text" : error ? "danger" : "primary";
-  const color = theme.colors[reColor];
+const TextInput = forwardRef(
+  (
+    { icon, touched, error, ...props }: TextInputProps,
+    ref: ForwardedRef<RNTextInput>
+  ) => {
+    const theme = useTheme();
+    const SIZE = theme.borderRadii.m * 2.5;
+    // eslint-disable-next-line no-nested-ternary
+    const reColor = touched ? "text" : error ? "danger" : "primary";
+    const color = theme.colors[reColor];
 
-  return (
-    <Box
-      flexDirection="row"
-      height={48}
-      alignItems="center"
-      borderRadius="s"
-      borderColor={reColor}
-      borderWidth={StyleSheet.hairlineWidth}
-      paddingHorizontal="s"
-    >
-      <Box padding="s">
-        <Icon name={icon as never} size={16} {...{ color }} />
-      </Box>
-      <Box flex={1}>
-        <RNTextInput
-          underlineColorAndroid="transparent"
-          placeholderTextColor={color}
-          {...props}
-        />
-      </Box>
-      {touched && (
-        <Box
-          borderRadius="l"
-          height={SIZE}
-          width={SIZE}
-          backgroundColor={!error ? "primary" : "danger"}
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Icon name={!error ? "check" : "x"} size={16} color="white" />
+    return (
+      <Box
+        flexDirection="row"
+        height={48}
+        alignItems="center"
+        borderRadius="s"
+        borderColor={reColor}
+        borderWidth={StyleSheet.hairlineWidth}
+        paddingHorizontal="s"
+      >
+        <Box padding="s">
+          <Icon name={icon as never} size={16} {...{ color }} />
         </Box>
-      )}
-    </Box>
-  );
-};
+        <Box flex={1}>
+          <RNTextInput
+            underlineColorAndroid="transparent"
+            placeholderTextColor={color}
+            {...{ ref }}
+            {...props}
+          />
+        </Box>
+        {touched && (
+          <Box
+            borderRadius="l"
+            height={SIZE}
+            width={SIZE}
+            backgroundColor={!error ? "primary" : "danger"}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Icon name={!error ? "check" : "x"} size={16} color="white" />
+          </Box>
+        )}
+      </Box>
+    );
+  }
+);
 
 export default TextInput;
