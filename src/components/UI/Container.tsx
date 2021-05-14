@@ -1,7 +1,7 @@
 import React from "react";
 import { Dimensions, Image, StatusBar, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import theme from "src/theme";
+import { makeStyles } from "src/theme";
 import { Box } from "src/theme/Theme";
 
 export const containerAssets = [require("../../../assets/pattern1.png")];
@@ -17,6 +17,7 @@ interface ContainerProps {
 
 const Container: React.FC<ContainerProps> = ({ children, footer }) => {
   const insets = useSafeAreaInsets();
+  const styles = useStyles();
   return (
     <Box flex={1} backgroundColor="secondary">
       <StatusBar barStyle="light-content" />
@@ -56,8 +57,8 @@ const Container: React.FC<ContainerProps> = ({ children, footer }) => {
   );
 };
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((theme) => ({
   image: { width, height, borderBottomLeftRadius: theme.borderRadii.xl },
-});
+}));
 
 export default Container;

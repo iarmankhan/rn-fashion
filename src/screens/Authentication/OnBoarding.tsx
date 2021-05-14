@@ -16,7 +16,7 @@ import Slide, {
 } from "src/components/Authentication/OnBoarding/Slide";
 import SubSlide from "src/components/Authentication/OnBoarding/Subslide";
 import { slides } from "src/data/onBoardingSlides";
-import theme from "src/theme";
+import { makeStyles, useTheme } from "src/theme";
 import { Routes, StackNavigationProps } from "src/types/navigation";
 
 const { width } = Dimensions.get("window");
@@ -26,6 +26,8 @@ export const onBoardingAssets = slides.map((slide) => slide.picture.src);
 const OnBoarding: React.FC<StackNavigationProps<Routes, "OnBoarding">> = ({
   navigation,
 }) => {
+  const theme = useTheme();
+  const styles = useStyles();
   const scroll = useRef<Animated.ScrollView>(null);
   const { scrollHandler, x } = useScrollHandler();
 
@@ -125,7 +127,7 @@ const OnBoarding: React.FC<StackNavigationProps<Routes, "OnBoarding">> = ({
   );
 };
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((theme) => ({
   container: {
     flex: 1,
     backgroundColor: "white",
@@ -156,6 +158,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-});
+}));
 
 export default OnBoarding;
