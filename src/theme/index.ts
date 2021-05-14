@@ -8,7 +8,6 @@ const theme = createTheme({
     text: "rgba(12, 13, 52, 0.7)",
     white: "white",
     grey: "#F4F0EF",
-    darkGray: "#8A8D90",
   },
   spacing: {
     s: 8,
