@@ -21,7 +21,7 @@ const TextInput: React.FC<TextInputProps> = ({
   ...props
 }) => {
   const theme = useTheme();
-  const SIZE = theme.borderRadii.m * 2;
+  const SIZE = theme.borderRadii.m * 2.5;
   // eslint-disable-next-line no-nested-ternary
   const reColor = touched ? "text" : error ? "danger" : "primary";
   const color = theme.colors[reColor];
