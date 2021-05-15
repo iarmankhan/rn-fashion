@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import ForgotPassword from "src/screens/Authentication/ForgotPassword";
 import Login from "src/screens/Authentication/Login";
 import OnBoarding from "src/screens/Authentication/OnBoarding";
+import PasswordChanged from "src/screens/Authentication/PasswordChanged";
 import SignUp from "src/screens/Authentication/SignUp";
 import Welcome from "src/screens/Authentication/Welcome";
 import { Routes } from "src/types/navigation";
@@ -19,6 +20,10 @@ const AuthenticationNavigator = () => {
       <AuthenticationStack.Screen
         name="ForgotPassword"
         component={ForgotPassword}
+      />
+      <AuthenticationStack.Screen
+        name="PasswordChanged"
+        component={PasswordChanged}
       />
     </AuthenticationStack.Navigator>
   );

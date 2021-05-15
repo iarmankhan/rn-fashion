@@ -65,16 +65,12 @@ const Welcome: React.FC<StackNavigationProps<Routes, "Welcome">> = ({
           />
           <Button
             label="Join us, it's Free"
-            onPress={() => {
-              //
-            }}
+            onPress={() => navigation.navigate("SignUp")}
           />
           <Button
             variant="transparent"
             label="Forgot password?"
-            onPress={() => {
-              //
-            }}
+            onPress={() => navigation.navigate("ForgotPassword")}
           />
         </Box>
       </Box>

@@ -14,12 +14,12 @@ const ForgotPasswordSchema = Yup.object().shape({
 });
 
 const ForgotPassword: React.FC<StackNavigationProps<Routes, "ForgotPassword">> =
-  () => {
+  ({ navigation }) => {
     const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
       useFormik({
         validationSchema: ForgotPasswordSchema,
         initialValues: { email: "" },
-        onSubmit: (data) => console.log(data),
+        onSubmit: () => navigation.navigate("PasswordChanged"),
       });
 
     return (
