@@ -1,6 +1,6 @@
 import { Feather as Icon } from "@expo/vector-icons";
 import React from "react";
-import { RectButton } from "react-native-gesture-handler";
+import { BorderlessButton } from "react-native-gesture-handler";
 import { Box, Text } from "src/theme/Theme";
 
 interface CheckBoxProps {
@@ -11,9 +11,10 @@ interface CheckBoxProps {
 
 const CheckBox: React.FC<CheckBoxProps> = ({ label, checked, onChange }) => {
   return (
-    <RectButton
+    <BorderlessButton
       onPress={() => onChange(!checked)}
       style={{ justifyContent: "center" }}
+      rippleColor="transparent"
     >
       <Box flexDirection="row" alignItems="center">
         <Box
@@ -31,7 +32,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({ label, checked, onChange }) => {
         </Box>
         <Text variant="button">{label}</Text>
       </Box>
-    </RectButton>
+    </BorderlessButton>
   );
 };
 

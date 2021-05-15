@@ -1,6 +1,7 @@
 import React from "react";
 import { Dimensions, Image } from "react-native";
 import Button from "src/components/UI/Button";
+import LinkButton from "src/components/UI/LinkButton";
 import { useTheme } from "src/theme";
 import { Box, Text } from "src/theme/Theme";
 import { Routes, StackNavigationProps } from "src/types/navigation";
@@ -67,8 +68,7 @@ const Welcome: React.FC<StackNavigationProps<Routes, "Welcome">> = ({
             label="Join us, it's Free"
             onPress={() => navigation.navigate("SignUp")}
           />
-          <Button
-            variant="transparent"
+          <LinkButton
             label="Forgot password?"
             onPress={() => navigation.navigate("ForgotPassword")}
           />

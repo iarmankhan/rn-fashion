@@ -6,6 +6,7 @@ import CheckBox from "src/components/Form/CheckBox";
 import TextInput from "src/components/Form/TextInput";
 import Button from "src/components/UI/Button";
 import Container from "src/components/UI/Container";
+import LinkButton from "src/components/UI/LinkButton";
 import { Box, Text } from "src/theme/Theme";
 import { Routes, StackNavigationProps } from "src/types/navigation";
 import * as Yup from "yup";
@@ -92,21 +93,24 @@ const Login: React.FC<StackNavigationProps<Routes, "Login">> = ({
             />
           </Box>
 
-          <Box flexDirection="row" justifyContent="space-between">
+          <Box
+            flexDirection="row"
+            alignItems="center"
+            justifyContent="space-between"
+          >
             <CheckBox
               label="Remember me"
               checked={values.remember}
               onChange={(v) => setFieldValue("remember", v)}
             />
-            <Button
+            <LinkButton
               onPress={() => navigation.navigate("ForgotPassword")}
-              variant="transparent"
-            >
-              <Text color="primary">Forgot Password</Text>
-            </Button>
+              label="Forgot Password"
+              color="primary"
+            />
           </Box>
 
-          <Box alignItems="center" marginTop="m">
+          <Box alignItems="center" marginTop="l">
             <Button
               onPress={handleSubmit}
               variant="primary"
