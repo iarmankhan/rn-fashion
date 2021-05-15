@@ -6,7 +6,10 @@ import TextInput from "src/components/Form/TextInput";
 import Button from "src/components/UI/Button";
 import Container from "src/components/UI/Container";
 import { Box, Text } from "src/theme/Theme";
-import { Routes, StackNavigationProps } from "src/types/navigation";
+import {
+  AuthenticationRoutes,
+  StackNavigationProps,
+} from "src/types/navigation";
 import * as Yup from "yup";
 
 const SignUpSchema = Yup.object().shape({
@@ -21,7 +24,7 @@ const SignUpSchema = Yup.object().shape({
 });
 
 const SignUp: React.FC<
-  StackNavigationProps<Routes & { Home: undefined }, "SignUp">
+  StackNavigationProps<AuthenticationRoutes & { Home: undefined }, "SignUp">
 > = ({ navigation }) => {
   const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
     useFormik({

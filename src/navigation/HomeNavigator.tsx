@@ -1,9 +1,9 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import React from "react";
 import OutfitIdeas from "src/screens/Home/OutfitIdeas";
-import { AuthenticatedRoutes } from "src/types/navigation";
+import { HomeRoutes } from "src/types/navigation";
 
-const Drawer = createDrawerNavigator<AuthenticatedRoutes>();
+const Drawer = createDrawerNavigator<HomeRoutes>();
 
 const HomeNavigator: React.FC = () => {
   return (

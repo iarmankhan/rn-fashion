@@ -4,12 +4,15 @@ import Container from "src/components/UI/Container";
 import RoundedIcon from "src/components/UI/RoundedIcon";
 import RoundedIconButton from "src/components/UI/RoundedIconButton";
 import { Box, Text } from "src/theme/Theme";
-import { Routes, StackNavigationProps } from "src/types/navigation";
+import {
+  AuthenticationRoutes,
+  StackNavigationProps,
+} from "src/types/navigation";
 
 const SIZE = 80;
 
 const PasswordChanged: React.FC<
-  StackNavigationProps<Routes, "PasswordChanged">
+  StackNavigationProps<AuthenticationRoutes, "PasswordChanged">
 > = ({ navigation }) => {
   return (
     <Container

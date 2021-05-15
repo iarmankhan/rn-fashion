@@ -17,15 +17,18 @@ import Slide, {
 import SubSlide from "src/components/Authentication/OnBoarding/Subslide";
 import { slides } from "src/data/onBoardingSlides";
 import { makeStyles, useTheme } from "src/theme";
-import { Routes, StackNavigationProps } from "src/types/navigation";
+import {
+  AuthenticationRoutes,
+  StackNavigationProps,
+} from "src/types/navigation";
 
 const { width } = Dimensions.get("window");
 
 export const onBoardingAssets = slides.map((slide) => slide.picture.src);
 
-const OnBoarding: React.FC<StackNavigationProps<Routes, "OnBoarding">> = ({
-  navigation,
-}) => {
+const OnBoarding: React.FC<
+  StackNavigationProps<AuthenticationRoutes, "OnBoarding">
+> = ({ navigation }) => {
   const theme = useTheme();
   const styles = useStyles();
   const scroll = useRef<Animated.ScrollView>(null);

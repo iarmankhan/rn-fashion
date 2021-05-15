@@ -6,9 +6,9 @@ import OnBoarding from "src/screens/Authentication/OnBoarding";
 import PasswordChanged from "src/screens/Authentication/PasswordChanged";
 import SignUp from "src/screens/Authentication/SignUp";
 import Welcome from "src/screens/Authentication/Welcome";
-import { Routes } from "src/types/navigation";
+import { AuthenticationRoutes } from "src/types/navigation";
 
-const AuthenticationStack = createStackNavigator<Routes>();
+const AuthenticationStack = createStackNavigator<AuthenticationRoutes>();
 
 const AuthenticationNavigator = () => {
   return (
