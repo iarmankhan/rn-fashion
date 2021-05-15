@@ -97,13 +97,20 @@ const Login: React.FC<StackNavigationProps<Routes, "Login">> = ({
               checked={values.remember}
               onChange={(v) => setFieldValue("remember", v)}
             />
-            <Button onPress={() => true} variant="transparent">
+            <Button
+              onPress={() => navigation.navigate("ForgotPassword")}
+              variant="transparent"
+            >
               <Text color="primary">Forgot Password</Text>
             </Button>
           </Box>
 
           <Box alignItems="center" marginTop="m">
-            <Button onPress={handleSubmit} variant="primary" label="Login" />
+            <Button
+              onPress={handleSubmit}
+              variant="primary"
+              label="Log into your account"
+            />
           </Box>
         </Box>
       </Box>

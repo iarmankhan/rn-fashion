@@ -1,8 +1,7 @@
 import { useFormik } from "formik";
-import React, { useRef } from "react";
-import { TextInput as RNTextInput } from "react-native";
+import React from "react";
+import { Linking } from "react-native";
 import AuthFooter from "src/components/Authentication/AuthFooter";
-import CheckBox from "src/components/Form/CheckBox";
 import TextInput from "src/components/Form/TextInput";
 import Button from "src/components/UI/Button";
 import Container from "src/components/UI/Container";
@@ -10,105 +9,66 @@ import { Box, Text } from "src/theme/Theme";
 import { Routes, StackNavigationProps } from "src/types/navigation";
 import * as Yup from "yup";
 
-const LoginSchema = Yup.object().shape({
+const ForgotPasswordSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
-  password: Yup.string()
-    .min(6, "Too Short!")
-    .max(20, "Too Long!")
-    .required("Required"),
 });
 
-const Login: React.FC<StackNavigationProps<Routes, "Login">> = ({
-  navigation,
-}) => {
-  const {
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    values,
-    errors,
-    touched,
-    setFieldValue,
-  } = useFormik({
-    validationSchema: LoginSchema,
-    initialValues: { email: "", password: "", remember: false },
-    onSubmit: (data) => console.log(data),
-  });
-  const password = useRef<RNTextInput>(null);
+const ForgotPassword: React.FC<StackNavigationProps<Routes, "ForgotPassword">> =
+  () => {
+    const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
+      useFormik({
+        validationSchema: ForgotPasswordSchema,
+        initialValues: { email: "" },
+        onSubmit: (data) => console.log(data),
+      });
 
-  return (
-    <Container
-      footer={
-        <AuthFooter
-          title="Don't have an account?"
-          onPress={() => navigation.navigate("SignUp")}
-          action="Sign up here"
-        />
-      }
-    >
-      <Box padding="xl">
-        <Text variant="title1" textAlign="center" marginBottom="l">
-          Welcome Back
-        </Text>
-        <Text variant="body" textAlign="center" marginBottom="l">
-          Use your credentials below and login to your account
-        </Text>
+    return (
+      <Container
+        footer={
+          <AuthFooter
+            title="Don't work?"
+            onPress={() => Linking.openURL("mailto:help@support.com")}
+            action="Try another way"
+          />
+        }
+      >
+        <Box padding="xl" justifyContent="center" flex={1}>
+          <Text variant="title1" textAlign="center" marginBottom="l">
+            Forgot Password?
+          </Text>
+          <Text variant="body" textAlign="center" marginBottom="l">
+            Enter the email address associated with your account
+          </Text>
 
-        <Box>
-          <Box marginBottom="m">
-            <TextInput
-              icon="mail"
-              placeholder="Enter your email"
-              onChangeText={handleChange("email")}
-              onBlur={handleBlur("email")}
-              value={values.email}
-              error={errors.email}
-              touched={touched.email}
-              autoCompleteType="email"
-              autoCapitalize={"none"}
-              returnKeyType="next"
-              returnKeyLabel="next"
-              onSubmitEditing={() => password.current?.focus()}
-            />
-          </Box>
+          <Box>
+            <Box marginBottom="m">
+              <TextInput
+                icon="mail"
+                placeholder="Enter your email"
+                onChangeText={handleChange("email")}
+                onBlur={handleBlur("email")}
+                value={values.email}
+                error={errors.email}
+                touched={touched.email}
+                autoCompleteType="email"
+                autoCapitalize={"none"}
+                returnKeyType="go"
+                returnKeyLabel="go"
+                onSubmitEditing={() => handleSubmit()}
+              />
+            </Box>
 
-          <Box marginBottom="m">
-            <TextInput
-              ref={password}
-              icon="lock"
-              placeholder="Enter your password"
-              secureTextEntry
-              onChangeText={handleChange("password")}
-              onBlur={handleBlur("password")}
-              value={values.password}
-              error={errors.password}
-              touched={touched.password}
-              autoCompleteType="password"
-              autoCapitalize="none"
-              returnKeyType="done"
-              returnKeyLabel="go"
-              onSubmitEditing={() => handleSubmit()}
-            />
-          </Box>
-
-          <Box flexDirection="row" justifyContent="space-between">
-            <CheckBox
-              label="Remember me"
-              checked={values.remember}
-              onChange={(v) => setFieldValue("remember", v)}
-            />
-            <Button onPress={() => true} variant="transparent">
-              <Text color="primary">Forgot Password</Text>
-            </Button>
-          </Box>
-
-          <Box alignItems="center" marginTop="m">
-            <Button onPress={handleSubmit} variant="primary" label="Login" />
+            <Box alignItems="center" marginTop="m">
+              <Button
+                onPress={handleSubmit}
+                variant="primary"
+                label="Reset Password"
+              />
+            </Box>
           </Box>
         </Box>
-      </Box>
-    </Container>
-  );
-};
+      </Container>
+    );
+  };
 
-export default Login;
+export default ForgotPassword;
