@@ -19,9 +19,9 @@ const LoginSchema = Yup.object().shape({
     .required("Required"),
 });
 
-const Login: React.FC<StackNavigationProps<Routes, "Login">> = ({
-  navigation,
-}) => {
+const Login: React.FC<
+  StackNavigationProps<Routes & { Home: undefined }, "Login">
+> = ({ navigation }) => {
   const {
     handleChange,
     handleBlur,
@@ -33,7 +33,7 @@ const Login: React.FC<StackNavigationProps<Routes, "Login">> = ({
   } = useFormik({
     validationSchema: LoginSchema,
     initialValues: { email: "", password: "", remember: false },
-    onSubmit: (data) => console.log(data),
+    onSubmit: () => navigation.navigate("Home"),
   });
   const password = useRef<RNTextInput>(null);
 

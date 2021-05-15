@@ -20,14 +20,14 @@ const SignUpSchema = Yup.object().shape({
     .required("Required"),
 });
 
-const SignUp: React.FC<StackNavigationProps<Routes, "SignUp">> = ({
-  navigation,
-}) => {
+const SignUp: React.FC<
+  StackNavigationProps<Routes & { Home: undefined }, "SignUp">
+> = ({ navigation }) => {
   const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
     useFormik({
       validationSchema: SignUpSchema,
       initialValues: { email: "", password: "", passwordConfirmation: "" },
-      onSubmit: (data) => console.log(data),
+      onSubmit: () => navigation.navigate("Home"),
     });
   const password = useRef<RNTextInput>(null);
   const passwordConfirmation = useRef<RNTextInput>(null);

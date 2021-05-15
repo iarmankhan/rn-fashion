@@ -17,3 +17,12 @@ export type Routes = {
   ForgotPassword: undefined;
   PasswordChanged: undefined;
 };
+
+export type AppStackRoutes = {
+  Authentication: undefined;
+  Home: undefined;
+};
+
+export type AuthenticatedRoutes = {
+  OutfitIdeas: undefined;
+};
