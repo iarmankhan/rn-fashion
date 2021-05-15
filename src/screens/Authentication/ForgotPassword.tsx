@@ -24,6 +24,7 @@ const ForgotPassword: React.FC<StackNavigationProps<Routes, "ForgotPassword">> =
 
     return (
       <Container
+        pattern={2}
         footer={
           <AuthFooter
             title="Don't work?"

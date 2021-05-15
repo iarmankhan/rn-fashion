@@ -1,10 +1,10 @@
 import React from "react";
-import CloseButtonFooter from "src/components/CloseButtonFooter";
 import Button from "src/components/UI/Button";
 import Container from "src/components/UI/Container";
+import RoundedIcon from "src/components/UI/RoundedIcon";
+import RoundedIconButton from "src/components/UI/RoundedIconButton";
 import { Box, Text } from "src/theme/Theme";
 import { Routes, StackNavigationProps } from "src/types/navigation";
-import { Feather as Icon } from "@expo/vector-icons";
 
 const SIZE = 80;
 
@@ -13,31 +13,33 @@ const PasswordChanged: React.FC<
 > = ({ navigation }) => {
   return (
     <Container
+      pattern={0}
       footer={
         <Box flexDirection="row" justifyContent="center">
-          <CloseButtonFooter onPress={() => navigation.pop()} />
+          <RoundedIconButton
+            onPress={() => navigation.pop()}
+            name="x"
+            size={70}
+            backgroundColor="white"
+            color="secondary"
+          />
         </Box>
       }
     >
       <Box padding="xl" justifyContent="center" alignItems="center" flex={1}>
-        <Box
-          alignItems="center"
-          justifyContent="center"
-          backgroundColor="primaryLight"
-          width={SIZE}
-          height={SIZE}
-          style={{ borderRadius: SIZE / 2 }}
-          marginBottom="xl"
-        >
-          <Text color="primary" textAlign="center">
-            <Icon name="check" size={32} />
-          </Text>
+        <Box marginBottom="xl">
+          <RoundedIcon
+            name="check"
+            size={SIZE}
+            color="primary"
+            backgroundColor="primaryLight"
+          />
         </Box>
         <Text variant="title1" textAlign="center" marginBottom="l">
           Your password was successfully changed
         </Text>
         <Text variant="body" textAlign="center" marginBottom="l">
-          Enter the email address associated with your account
+          Close this window and login again
         </Text>
 
         <Box alignItems="center" marginTop="m">

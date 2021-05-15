@@ -38,6 +38,7 @@ const Login: React.FC<StackNavigationProps<Routes, "Login">> = ({
 
   return (
     <Container
+      pattern={0}
       footer={
         <AuthFooter
           title="Don't have an account?"

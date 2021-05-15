@@ -34,6 +34,7 @@ const SignUp: React.FC<StackNavigationProps<Routes, "SignUp">> = ({
 
   return (
     <Container
+      pattern={1}
       footer={
         <AuthFooter
           title="Already have an account?"
