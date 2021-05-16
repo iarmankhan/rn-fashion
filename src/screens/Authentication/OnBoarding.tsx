@@ -2,9 +2,9 @@ import React, { useRef } from "react";
 import { Dimensions, Image, StyleSheet, View } from "react-native";
 import Animated, {
   divide,
+  Extrapolate,
   interpolateNode,
   multiply,
-  Extrapolate,
 } from "react-native-reanimated";
 import {
   interpolateColor,
@@ -17,18 +17,15 @@ import Slide, {
 import SubSlide from "src/components/Authentication/OnBoarding/Subslide";
 import { slides } from "src/data/onBoardingSlides";
 import { makeStyles, useTheme } from "src/theme";
-import {
-  AuthenticationRoutes,
-  StackNavigationProps,
-} from "src/types/navigation";
+import { AuthNavigationProps } from "src/types/navigation";
 
 const { width } = Dimensions.get("window");
 
 export const onBoardingAssets = slides.map((slide) => slide.picture.src);
 
-const OnBoarding: React.FC<
-  StackNavigationProps<AuthenticationRoutes, "OnBoarding">
-> = ({ navigation }) => {
+const OnBoarding: React.FC<AuthNavigationProps<"OnBoarding">> = ({
+  navigation,
+}) => {
   const theme = useTheme();
   const styles = useStyles();
   const scroll = useRef<Animated.ScrollView>(null);

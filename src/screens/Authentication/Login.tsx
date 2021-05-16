@@ -1,6 +1,3 @@
-import { DrawerNavigationProp } from "@react-navigation/drawer";
-import { CompositeNavigationProp } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
 import { useFormik } from "formik";
 import React, { useRef } from "react";
 import { TextInput as RNTextInput } from "react-native";
@@ -11,7 +8,7 @@ import Button from "src/components/UI/Button";
 import Container from "src/components/UI/Container";
 import LinkButton from "src/components/UI/LinkButton";
 import { Box, Text } from "src/theme/Theme";
-import { AuthenticationRoutes, HomeRoutes } from "src/types/navigation";
+import { AuthNavigationProps } from "src/types/navigation";
 import * as Yup from "yup";
 
 const LoginSchema = Yup.object().shape({
@@ -22,14 +19,7 @@ const LoginSchema = Yup.object().shape({
     .required("Required"),
 });
 
-interface LoginProps {
-  navigation: CompositeNavigationProp<
-    StackNavigationProp<AuthenticationRoutes, "Login">,
-    DrawerNavigationProp<HomeRoutes, "OutfitIdeas">
-  >;
-}
-
-const Login: React.FC<LoginProps> = ({ navigation }) => {
+const Login: React.FC<AuthNavigationProps<"Login">> = ({ navigation }) => {
   const {
     handleChange,
     handleBlur,
@@ -41,7 +31,7 @@ const Login: React.FC<LoginProps> = ({ navigation }) => {
   } = useFormik({
     validationSchema: LoginSchema,
     initialValues: { email: "", password: "", remember: false },
-    onSubmit: () => navigation.navigate("OutfitIdeas"),
+    onSubmit: () => navigation.navigate("Home"),
   });
   const password = useRef<RNTextInput>(null);
 
@@ -56,75 +46,73 @@ const Login: React.FC<LoginProps> = ({ navigation }) => {
         />
       }
     >
-      <Box padding="xl">
-        <Text variant="title1" textAlign="center" marginBottom="l">
-          Welcome Back
-        </Text>
-        <Text variant="body" textAlign="center" marginBottom="l">
-          Use your credentials below and login to your account
-        </Text>
+      <Text variant="title1" textAlign="center" marginBottom="l">
+        Welcome Back
+      </Text>
+      <Text variant="body" textAlign="center" marginBottom="l">
+        Use your credentials below and login to your account
+      </Text>
 
-        <Box>
-          <Box marginBottom="m">
-            <TextInput
-              icon="mail"
-              placeholder="Enter your email"
-              onChangeText={handleChange("email")}
-              onBlur={handleBlur("email")}
-              value={values.email}
-              error={errors.email}
-              touched={touched.email}
-              autoCompleteType="email"
-              autoCapitalize={"none"}
-              returnKeyType="next"
-              returnKeyLabel="next"
-              onSubmitEditing={() => password.current?.focus()}
-            />
-          </Box>
+      <Box>
+        <Box marginBottom="m">
+          <TextInput
+            icon="mail"
+            placeholder="Enter your email"
+            onChangeText={handleChange("email")}
+            onBlur={handleBlur("email")}
+            value={values.email}
+            error={errors.email}
+            touched={touched.email}
+            autoCompleteType="email"
+            autoCapitalize={"none"}
+            returnKeyType="next"
+            returnKeyLabel="next"
+            onSubmitEditing={() => password.current?.focus()}
+          />
+        </Box>
 
-          <Box marginBottom="m">
-            <TextInput
-              ref={password}
-              icon="lock"
-              placeholder="Enter your password"
-              secureTextEntry
-              onChangeText={handleChange("password")}
-              onBlur={handleBlur("password")}
-              value={values.password}
-              error={errors.password}
-              touched={touched.password}
-              autoCompleteType="password"
-              autoCapitalize="none"
-              returnKeyType="done"
-              returnKeyLabel="go"
-              onSubmitEditing={() => handleSubmit()}
-            />
-          </Box>
+        <Box marginBottom="m">
+          <TextInput
+            ref={password}
+            icon="lock"
+            placeholder="Enter your password"
+            secureTextEntry
+            onChangeText={handleChange("password")}
+            onBlur={handleBlur("password")}
+            value={values.password}
+            error={errors.password}
+            touched={touched.password}
+            autoCompleteType="password"
+            autoCapitalize="none"
+            returnKeyType="done"
+            returnKeyLabel="go"
+            onSubmitEditing={() => handleSubmit()}
+          />
+        </Box>
 
-          <Box
-            flexDirection="row"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <CheckBox
-              label="Remember me"
-              checked={values.remember}
-              onChange={(v) => setFieldValue("remember", v)}
-            />
-            <LinkButton
-              onPress={() => navigation.navigate("ForgotPassword")}
-              label="Forgot Password"
-              color="primary"
-            />
-          </Box>
+        <Box
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <CheckBox
+            label="Remember me"
+            checked={values.remember}
+            onChange={(v) => setFieldValue("remember", v)}
+          />
+          <LinkButton
+            onPress={() => navigation.navigate("ForgotPassword")}
+            label="Forgot Password"
+            color="primary"
+          />
+        </Box>
 
-          <Box alignItems="center" marginTop="l">
-            <Button
-              onPress={handleSubmit}
-              variant="primary"
-              label="Log into your account"
-            />
-          </Box>
+        <Box alignItems="center" marginTop="l">
+          <Button
+            onPress={handleSubmit}
+            variant="primary"
+            label="Log into your account"
+          />
         </Box>
       </Box>
     </Container>
