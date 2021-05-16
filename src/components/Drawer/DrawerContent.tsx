@@ -1,8 +1,7 @@
 import React from "react";
 import { Dimensions, Image, ScrollView } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import DrawerItem from "src/components/Drawer/DrawerItem";
-import RoundedIconButton from "src/components/UI/RoundedIconButton";
+import Header from "src/components/UI/Header";
 import { useTheme } from "src/theme";
 import { Box, Text } from "src/theme/Theme";
 import { DrawerItemType } from "src/types/drawer";
@@ -61,7 +60,6 @@ const items: DrawerItemType[] = [
 
 const DrawerContent = () => {
   const theme = useTheme();
-  const insets = useSafeAreaInsets();
   return (
     <Box flex={1}>
       <Box flex={0.2} backgroundColor="white">
@@ -74,29 +72,11 @@ const DrawerContent = () => {
           borderBottomRightRadius="xl"
           backgroundColor="secondary"
         >
-          <Box
-            flexDirection="row"
-            justifyContent="space-between"
-            alignItems="center"
-            paddingHorizontal="m"
-            style={{ paddingTop: insets.top + 5 }}
-          >
-            <RoundedIconButton
-              onPress={() => true}
-              name="x"
-              size={24}
-              color="white"
-              backgroundColor="secondary"
-            />
-            <Text color="white">MY PROFILE</Text>
-            <RoundedIconButton
-              onPress={() => true}
-              name="shopping-bag"
-              size={24}
-              color="white"
-              backgroundColor="secondary"
-            />
-          </Box>
+          <Header
+            left={{ icon: "x", onPress: () => true }}
+            right={{ icon: "shopping-bag", onPress: () => true }}
+            title="Menu"
+          />
         </Box>
       </Box>
       <Box flex={0.8}>

@@ -58,6 +58,12 @@ const theme = createTheme({
       fontSize: 15,
       color: "text",
     },
+    header: {
+      fontSize: 12,
+      fontFamily: "semiBold",
+      lineHeight: 24,
+      color: "secondary",
+    },
   },
 });
 
