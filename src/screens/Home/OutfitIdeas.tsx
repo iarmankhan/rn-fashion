@@ -1,21 +1,17 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import Header from "src/components/UI/Header";
+import { Box } from "src/theme/Theme";
 
 const OutfitIdeas: React.FC = () => {
   return (
-    <View style={styles.container}>
-      <Text>Home</Text>
-    </View>
+    <Box flex={1} backgroundColor="white">
+      <Header
+        left={{ icon: "menu", onPress: () => true }}
+        right={{ icon: "shopping-bag", onPress: () => true }}
+        title="Outfit Ideas"
+      />
+    </Box>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#333",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export default OutfitIdeas;

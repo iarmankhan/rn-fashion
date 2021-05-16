@@ -13,10 +13,18 @@ interface HeaderProps {
     onPress: () => void;
   };
   title: string;
+  dark?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ title, left, right }) => {
+const Header: React.FC<HeaderProps> = ({
+  title,
+  left,
+  right,
+  dark = false,
+}) => {
   const insets = useSafeAreaInsets();
+  const color = dark ? "white" : "secondary";
+  const backgroundColor = dark ? "secondary" : "lightGrey";
   return (
     <Box
       flexDirection="row"
@@ -28,19 +36,19 @@ const Header: React.FC<HeaderProps> = ({ title, left, right }) => {
       <RoundedIconButton
         onPress={left.onPress}
         name={left.icon}
-        size={24}
-        color="white"
-        backgroundColor="secondary"
+        size={44}
+        iconRatio={0.5}
+        {...{ color, backgroundColor }}
       />
-      <Text variant="header" color="white">
+      <Text variant="header" {...{ color }}>
         {title.toUpperCase()}
       </Text>
       <RoundedIconButton
         onPress={right.onPress}
         name={right.icon}
-        size={24}
-        color="white"
-        backgroundColor="secondary"
+        size={44}
+        iconRatio={0.5}
+        {...{ color, backgroundColor }}
       />
     </Box>
   );

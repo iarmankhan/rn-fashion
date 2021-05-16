@@ -76,6 +76,7 @@ const DrawerContent = () => {
             left={{ icon: "x", onPress: () => true }}
             right={{ icon: "shopping-bag", onPress: () => true }}
             title="Menu"
+            dark
           />
         </Box>
       </Box>
