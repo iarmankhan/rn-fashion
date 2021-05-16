@@ -1,3 +1,7 @@
+import {
+  DrawerContentComponentProps,
+  DrawerContentOptions,
+} from "@react-navigation/drawer";
 import React from "react";
 import { Dimensions, Image, ScrollView } from "react-native";
 import DrawerItem from "src/components/Drawer/DrawerItem";
@@ -58,7 +62,9 @@ const items: DrawerItemType[] = [
   },
 ];
 
-const DrawerContent = () => {
+const DrawerContent = ({
+  navigation,
+}: DrawerContentComponentProps<DrawerContentOptions>) => {
   const theme = useTheme();
   return (
     <Box flex={1}>
@@ -73,7 +79,7 @@ const DrawerContent = () => {
           backgroundColor="secondary"
         >
           <Header
-            left={{ icon: "x", onPress: () => true }}
+            left={{ icon: "x", onPress: () => navigation.closeDrawer() }}
             right={{ icon: "shopping-bag", onPress: () => true }}
             title="Menu"
             dark

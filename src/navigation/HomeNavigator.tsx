@@ -12,7 +12,7 @@ const HomeNavigator: React.FC = () => {
   return (
     <Drawer.Navigator
       initialRouteName="OutfitIdeas"
-      drawerContent={() => <DrawerContent />}
+      drawerContent={(props) => <DrawerContent {...props} />}
       drawerStyle={{ width: DRAWER_WIDTH }}
     >
       <Drawer.Screen name="OutfitIdeas" component={OutfitIdeas} />
