@@ -6,8 +6,8 @@ import {
   mix,
   mixColor,
   usePanGestureHandler,
-  withSpring,
 } from "react-native-redash/lib/module/v1";
+import { useSpring } from "src/animations";
 import { Box } from "src/theme/Theme";
 
 const { width: wWidth } = Dimensions.get("window");
@@ -28,16 +28,16 @@ const Card: React.FC<CardProps> = ({ position, onSwipe }) => {
   const backgroundColor = mixColor(position, "#C9E9E7", "#74BCB8") as never;
   const translateYOffset = mix(position, 0, -50);
   const scale = mix(position, 1, 0.9);
-  const translateX = withSpring({
+  const translateX = useSpring({
     value: translation.x,
     velocity: velocity.x,
-    snapPoints: [-width, 0, width],
+    snapPoints: [-wWidth, 0, wWidth],
     state,
     onSnap: ([x]) => x !== 0 && onSwipe(),
   });
   const translateY = add(
     translateYOffset,
-    withSpring({
+    useSpring({
       value: translation.y,
       velocity: velocity.y,
       snapPoints: [0],
