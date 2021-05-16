@@ -16,10 +16,11 @@ const height = width * (425 / 294);
 const borderRadius = 24;
 
 interface CardProps {
-  position: Animated.Adaptable<number>;
+  position: Animated.Node<number>;
+  onSwipe: () => void;
 }
 
-const Card: React.FC<CardProps> = ({ position }) => {
+const Card: React.FC<CardProps> = ({ position, onSwipe }) => {
   const { gestureHandler, translation, velocity, state } =
     usePanGestureHandler();
 
@@ -32,6 +33,7 @@ const Card: React.FC<CardProps> = ({ position }) => {
     velocity: velocity.x,
     snapPoints: [-width, 0, width],
     state,
+    onSnap: ([x]) => x !== 0 && onSwipe(),
   });
   const translateY = add(
     translateYOffset,
