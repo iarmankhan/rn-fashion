@@ -1,12 +1,13 @@
 import React from "react";
-import { Dimensions, Image, ScrollView, StyleSheet } from "react-native";
+import { Dimensions, Image, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import DrawerItem from "src/components/Drawer/DrawerItem";
 import RoundedIconButton from "src/components/UI/RoundedIconButton";
+import { useTheme } from "src/theme";
 import { Box, Text } from "src/theme/Theme";
 import { DrawerItemType } from "src/types/drawer";
 
-export const drawerAssets = [require("../../../assets/pattern1.png")] as const;
+export const drawerAssets = [require("../../../assets/drawer.png")] as const;
 
 const { width } = Dimensions.get("window");
 export const DRAWER_WIDTH = width * 0.8;
@@ -59,6 +60,7 @@ const items: DrawerItemType[] = [
 ];
 
 const DrawerContent = () => {
+  const theme = useTheme();
   const insets = useSafeAreaInsets();
   return (
     <Box flex={1}>
@@ -99,7 +101,6 @@ const DrawerContent = () => {
       </Box>
       <Box flex={0.8}>
         <Box flex={1} backgroundColor="secondary" />
-        <Box flex={1} backgroundColor="primary" />
         <Box
           position="absolute"
           top={0}
@@ -147,9 +148,9 @@ const DrawerContent = () => {
         <Image
           source={drawerAssets[0]}
           style={{
-            ...StyleSheet.absoluteFillObject,
-            width: undefined,
-            height: undefined,
+            width: DRAWER_WIDTH,
+            height,
+            borderTopLeftRadius: theme.borderRadii.xl,
           }}
         />
       </Box>
