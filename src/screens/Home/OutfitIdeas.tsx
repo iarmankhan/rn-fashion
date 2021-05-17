@@ -3,6 +3,7 @@ import { sub } from "react-native-reanimated";
 import { useTransition } from "react-native-redash/lib/module/v1";
 import Background from "src/components/OutfitIdeas/Background";
 import Card from "src/components/OutfitIdeas/Card";
+import Categories from "src/components/OutfitIdeas/Categories";
 import Header from "src/components/UI/Header";
 import { Box } from "src/theme/Theme";
 import { HomeNavigationProps } from "src/types/navigation";
@@ -40,9 +41,9 @@ const OutfitIdeas: React.FC<HomeNavigationProps<"OutfitIdeas">> = ({
         right={{ icon: "shopping-bag", onPress: () => true }}
         title="Outfit Ideas"
       />
+      <Categories />
       <Box flex={1}>
         <Background />
-
         {cards.map(
           ({ index, source }) =>
             currentIndex < index * step + step && (
