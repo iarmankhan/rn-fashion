@@ -29,6 +29,7 @@ const cards = [
 
 const step = 1 / (cards.length - 1);
 
+// TODO: add buttons bottom bar
 const OutfitIdeas: React.FC<HomeNavigationProps<"OutfitIdeas">> = ({
   navigation,
 }) => {

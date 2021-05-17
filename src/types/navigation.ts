@@ -33,4 +33,5 @@ export type AppRoutes = {
 
 export type HomeRoutes = {
   OutfitIdeas: undefined;
+  FavoriteOutfits: undefined;
 };

@@ -121,7 +121,7 @@ const DrawerContent = ({
           </Box>
           <ScrollView>
             {items.map((item) => (
-              <DrawerItem key={item.id} {...item} />
+              <DrawerItem key={item.id} {...{ navigation }} {...item} />
             ))}
           </ScrollView>
         </Box>
