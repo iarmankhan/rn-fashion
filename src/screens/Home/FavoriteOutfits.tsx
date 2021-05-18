@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Dimensions, ScrollView } from "react-native";
 import Footer from "src/components/FavoriteOutfits/Footer";
 import Outfit from "src/components/FavoriteOutfits/Outfit";
+import TopCurve from "src/components/FavoriteOutfits/TopCurve";
 import Header from "src/components/UI/Header";
 import { useTheme } from "src/theme";
 import { Box } from "src/theme/Theme";
@@ -113,6 +114,7 @@ const FavoriteOutfits: React.FC<HomeNavigationProps<"FavoriteOutfits">> = ({
             </Box>
           </Transitioning.View>
         </ScrollView>
+        <TopCurve {...{ footerHeight }} />
         <Box
           position="absolute"
           left={0}
