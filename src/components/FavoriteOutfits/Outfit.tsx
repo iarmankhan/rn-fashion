@@ -7,10 +7,20 @@ interface OutfitProps {
     id: number;
     aspectRatio: number;
   };
+  width: number;
 }
 
-const Outfit: React.FC<OutfitProps> = ({ outfit: { color } }) => {
-  return <Box style={{ backgroundColor: color }} />;
+const Outfit: React.FC<OutfitProps> = ({
+  outfit: { color: backgroundColor, aspectRatio },
+  width,
+}) => {
+  return (
+    <Box
+      borderRadius="m"
+      marginBottom="m"
+      style={{ backgroundColor, width, height: width * aspectRatio }}
+    />
+  );
 };
 
 export default Outfit;

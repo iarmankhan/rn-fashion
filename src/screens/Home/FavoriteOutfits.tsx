@@ -1,8 +1,9 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { Dimensions, ScrollView } from "react-native";
 import Footer from "src/components/FavoriteOutfits/Footer";
 import Outfit from "src/components/FavoriteOutfits/Outfit";
 import Header from "src/components/UI/Header";
+import { useTheme } from "src/theme";
 import { Box } from "src/theme/Theme";
 import { HomeNavigationProps } from "src/types/navigation";
 
@@ -44,14 +45,18 @@ const outfits = [
   },
   {
     id: 8,
-    color: "#D5C3BB",
+    color: "#DEEFC4",
     aspectRatio: 160 / 145,
   },
 ];
 
+const { width: wWidth } = Dimensions.get("window");
+
 const FavoriteOutfits: React.FC<HomeNavigationProps<"FavoriteOutfits">> = ({
   navigation,
 }) => {
+  const theme = useTheme();
+  const width = (wWidth - theme.spacing.m * 3) / 2;
   return (
     <Box flex={1} backgroundColor="white">
       <Header
@@ -59,20 +64,26 @@ const FavoriteOutfits: React.FC<HomeNavigationProps<"FavoriteOutfits">> = ({
         right={{ icon: "shopping-bag", onPress: () => true }}
         title="Favorite Outfits"
       />
-      <ScrollView>
+      <ScrollView
+        contentContainerStyle={{
+          paddingHorizontal: theme.spacing.m,
+          marginTop: theme.spacing.m,
+          paddingBottom: theme.spacing.m,
+        }}
+      >
         <Box flexDirection="row">
           <Box>
             {outfits
               .filter((_, i) => i % 2 !== 0)
               .map((outfit) => (
-                <Outfit key={outfit.id} {...{ outfit }} />
+                <Outfit key={outfit.id} {...{ outfit, width }} />
               ))}
           </Box>
-          <Box>
+          <Box marginLeft="m">
             {outfits
               .filter((_, i) => i % 2 === 0)
               .map((outfit) => (
-                <Outfit key={outfit.id} {...{ outfit }} />
+                <Outfit key={outfit.id} {...{ outfit, width }} />
               ))}
           </Box>
         </Box>
