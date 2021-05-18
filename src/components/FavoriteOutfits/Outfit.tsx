@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import BorderlessTap from "src/components/UI/BorderlessTap";
+import RoundedIcon from "src/components/UI/RoundedIcon";
 import { Box } from "src/theme/Theme";
 
 interface OutfitProps {
@@ -6,20 +8,41 @@ interface OutfitProps {
     color: string;
     id: number;
     aspectRatio: number;
+    selected: boolean;
   };
   width: number;
 }
 
-const Outfit: React.FC<OutfitProps> = ({
-  outfit: { color: backgroundColor, aspectRatio },
-  width,
-}) => {
+const Outfit: React.FC<OutfitProps> = ({ outfit, width }) => {
+  const [selected, setSelected] = useState(false);
   return (
-    <Box
-      borderRadius="m"
-      marginBottom="m"
-      style={{ backgroundColor, width, height: width * aspectRatio }}
-    />
+    <BorderlessTap
+      onPress={() => {
+        setSelected((s) => !s);
+        outfit.selected = !outfit.selected;
+      }}
+    >
+      <Box
+        borderRadius="m"
+        marginBottom="m"
+        alignItems="flex-end"
+        padding="s"
+        style={{
+          backgroundColor: outfit.color,
+          width,
+          height: width * outfit.aspectRatio,
+        }}
+      >
+        {selected && (
+          <RoundedIcon
+            name="check"
+            size={22}
+            color="white"
+            backgroundColor="primary"
+          />
+        )}
+      </Box>
+    </BorderlessTap>
   );
 };
 
