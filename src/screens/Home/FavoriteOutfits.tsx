@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Dimensions, ScrollView } from "react-native";
 import Footer from "src/components/FavoriteOutfits/Footer";
 import Outfit from "src/components/FavoriteOutfits/Outfit";
@@ -57,6 +57,9 @@ const FavoriteOutfits: React.FC<HomeNavigationProps<"FavoriteOutfits">> = ({
 }) => {
   const theme = useTheme();
   const width = (wWidth - theme.spacing.m * 3) / 2;
+
+  const [footerHeight, setFooterHeight] = useState(0);
+
   return (
     <Box flex={1} backgroundColor="white">
       <Header
@@ -64,31 +67,45 @@ const FavoriteOutfits: React.FC<HomeNavigationProps<"FavoriteOutfits">> = ({
         right={{ icon: "shopping-bag", onPress: () => true }}
         title="Favorite Outfits"
       />
-      <ScrollView
-        contentContainerStyle={{
-          paddingHorizontal: theme.spacing.m,
-          marginTop: theme.spacing.m,
-          paddingBottom: theme.spacing.m,
-        }}
-      >
-        <Box flexDirection="row">
-          <Box>
-            {outfits
-              .filter((_, i) => i % 2 !== 0)
-              .map((outfit) => (
-                <Outfit key={outfit.id} {...{ outfit, width }} />
-              ))}
+      <Box flex={1}>
+        <ScrollView
+          contentContainerStyle={{
+            paddingHorizontal: theme.spacing.m,
+            paddingBottom: footerHeight,
+            paddingTop: theme.spacing.s,
+          }}
+        >
+          <Box flexDirection="row">
+            <Box>
+              {outfits
+                .filter((_, i) => i % 2 !== 0)
+                .map((outfit) => (
+                  <Outfit key={outfit.id} {...{ outfit, width }} />
+                ))}
+            </Box>
+            <Box marginLeft="m">
+              {outfits
+                .filter((_, i) => i % 2 === 0)
+                .map((outfit) => (
+                  <Outfit key={outfit.id} {...{ outfit, width }} />
+                ))}
+            </Box>
           </Box>
-          <Box marginLeft="m">
-            {outfits
-              .filter((_, i) => i % 2 === 0)
-              .map((outfit) => (
-                <Outfit key={outfit.id} {...{ outfit, width }} />
-              ))}
-          </Box>
+        </ScrollView>
+        <Box
+          position="absolute"
+          left={0}
+          right={0}
+          bottom={0}
+          onLayout={({
+            nativeEvent: {
+              layout: { height },
+            },
+          }) => setFooterHeight(height)}
+        >
+          <Footer onPress={() => true} label="Add more to favorites" />
         </Box>
-      </ScrollView>
-      <Footer onPress={() => true} label="Add more to favorites" />
+      </Box>
     </Box>
   );
 };
