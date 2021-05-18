@@ -5,6 +5,7 @@ import DrawerContent, {
 } from "src/components/Drawer/DrawerContent";
 import FavoriteOutfits from "src/screens/Home/FavoriteOutfits";
 import OutfitIdeas from "src/screens/Home/OutfitIdeas";
+import TransactionHistory from "src/screens/Home/TransactionHistory";
 import { HomeRoutes } from "src/types/navigation";
 
 const Drawer = createDrawerNavigator<HomeRoutes>();
@@ -18,6 +19,7 @@ const HomeNavigator: React.FC = () => {
     >
       <Drawer.Screen name="OutfitIdeas" component={OutfitIdeas} />
       <Drawer.Screen name="FavoriteOutfits" component={FavoriteOutfits} />
+      <Drawer.Screen name="TransactionHistory" component={TransactionHistory} />
     </Drawer.Navigator>
   );
 };
