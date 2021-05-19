@@ -50,6 +50,11 @@ const theme = createTheme({
       lineHeight: 30,
       color: "secondary",
     },
+    title3: {
+      fontFamily: "semiBold",
+      fontSize: 16,
+      color: "secondary",
+    },
     body: {
       fontFamily: "regular",
       fontSize: 16,
