@@ -47,6 +47,7 @@ const Graph: React.FC<GraphProps> = ({ data, startDate, numberOfMonths }) => {
       />
       <Box {...{ width, height }}>
         {data.map((point) => {
+          // todo: fix this
           const i = new Date(point.date - startDate).getMonth();
           return (
             <Box

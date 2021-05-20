@@ -39,7 +39,7 @@ const TransactionHistory: React.FC<HomeNavigationProps<"TransactionHistory">> =
           right={{ icon: "share", onPress: () => true }}
           title="Transaction History"
         />
-        <Box padding="m">
+        <Box padding="m" flex={1}>
           <Box
             flexDirection="row"
             justifyContent="space-between"

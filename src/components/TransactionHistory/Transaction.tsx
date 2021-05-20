@@ -8,9 +8,14 @@ interface TransactionProps {
 
 const Transaction: React.FC<TransactionProps> = ({ transaction }) => {
   return (
-    <Box>
+    <Box
+      marginTop="l"
+      flexDirection="row"
+      justifyContent="space-between"
+      alignItems="center"
+    >
       <Box>
-        <Box flexDirection="row" alignItems="center">
+        <Box flexDirection="row" alignItems="center" marginBottom="s">
           <Box
             backgroundColor={transaction.color}
             width={10}
@@ -20,12 +25,14 @@ const Transaction: React.FC<TransactionProps> = ({ transaction }) => {
           />
           <Text variant="title3">{`#${transaction.id}`}</Text>
         </Box>
-        <Text>{`$${transaction.value} - ${new Date(
+        <Text color="darkGrey">{`$${transaction.value} - ${new Date(
           transaction.date
         ).toLocaleDateString()}`}</Text>
       </Box>
       <Box>
-        <Text color="secondary">See more</Text>
+        <Text color="secondary" variant="button">
+          See more
+        </Text>
       </Box>
     </Box>
   );
