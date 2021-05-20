@@ -6,8 +6,8 @@ import Header from "src/components/UI/Header";
 import { Box, Text } from "src/theme/Theme";
 import { HomeNavigationProps } from "src/types/navigation";
 
-const minDate = new Date("2020-10-01").getTime();
-const maxDate = new Date("2021-04-01").getTime();
+const startDate = new Date("2020-10-01").getTime();
+const numberOfMonths = 6;
 
 const data: Point[] = [
   {
@@ -60,7 +60,11 @@ const TransactionHistory: React.FC<HomeNavigationProps<"TransactionHistory">> =
               <Text color="primary">All Time</Text>
             </Box>
           </Box>
-          <Graph {...{ data, minDate, maxDate }} />
+          <Graph
+            data={data}
+            numberOfMonths={numberOfMonths}
+            startDate={startDate}
+          />
           <ScrollView>
             {data.map((transaction) => (
               <Transaction key={transaction.id} transaction={transaction} />

@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native";
 import { Point } from "src/components/TransactionHistory/Graph";
 import { Box, Text } from "src/theme/Theme";
 

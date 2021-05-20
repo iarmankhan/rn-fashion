@@ -19,11 +19,11 @@ export interface Point {
 
 interface GraphProps {
   data: Point[];
-  minDate: number;
-  maxDate: number;
+  startDate: number;
+  numberOfMonths: number;
 }
 
-const Graph: React.FC<GraphProps> = ({ data, minDate, maxDate }) => {
+const Graph: React.FC<GraphProps> = ({ data, startDate, numberOfMonths }) => {
   const theme = useTheme();
   const canvasWidth = wWidth - theme.spacing.m * 2;
   const canvasHeight = canvasWidth * aspectRatio;
@@ -32,24 +32,26 @@ const Graph: React.FC<GraphProps> = ({ data, minDate, maxDate }) => {
   const height = canvasHeight - theme.spacing[MARGIN];
 
   const values = data.map((d) => d.value);
-  const dates = data.map((d) => d.date);
-  // const minX = Math.min(...dates);
-  // const maxX = Math.max(...dates);
   const minY = Math.min(...values);
   const maxY = Math.max(...values);
-  const step = width / data.length;
+  const step = width / numberOfMonths;
 
   return (
     <Box paddingBottom={MARGIN} paddingLeft={MARGIN} marginTop="xl">
-      <Underlay {...{ minY, maxY, dates, step }} />
+      <Underlay
+        maxY={maxY}
+        minY={minY}
+        startDate={startDate}
+        numberOfMonths={numberOfMonths}
+        step={step}
+      />
       <Box {...{ width, height }}>
-        {data.map((point, i) => {
-          if (point.value === 0) return null;
-
+        {data.map((point) => {
+          const i = new Date(point.date - startDate).getMonth();
           return (
             <Box
               position="absolute"
-              key={point.date}
+              key={point.id}
               left={i * step}
               bottom={0}
               height={lerp(0, height, point.value / maxY)}
