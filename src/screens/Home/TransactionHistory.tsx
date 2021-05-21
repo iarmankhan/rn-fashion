@@ -1,8 +1,10 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { Dimensions, Image, ScrollView, StyleSheet } from "react-native";
 import Graph, { Point } from "src/components/TransactionHistory/Graph";
+import TopCurve from "src/components/TransactionHistory/TopCurve";
 import Transaction from "src/components/TransactionHistory/Transaction";
 import Header from "src/components/UI/Header";
+import { useTheme } from "src/theme";
 import { Box, Text } from "src/theme/Theme";
 import { HomeNavigationProps } from "src/types/navigation";
 
@@ -30,8 +32,11 @@ const data: Point[] = [
   },
 ];
 
+const footerHeight = Dimensions.get("window").width / 3;
+
 const TransactionHistory: React.FC<HomeNavigationProps<"TransactionHistory">> =
   ({ navigation }) => {
+    const theme = useTheme();
     return (
       <Box flex={1}>
         <Header
@@ -65,11 +70,31 @@ const TransactionHistory: React.FC<HomeNavigationProps<"TransactionHistory">> =
             numberOfMonths={numberOfMonths}
             startDate={startDate}
           />
-          <ScrollView>
+          <ScrollView contentContainerStyle={{ paddingBottom: footerHeight }}>
             {data.map((transaction) => (
               <Transaction key={transaction.id} transaction={transaction} />
             ))}
           </ScrollView>
+        </Box>
+        <TopCurve footerHeight={footerHeight} />
+        <Box
+          position="absolute"
+          left={0}
+          bottom={0}
+          right={0}
+          height={footerHeight}
+        >
+          <Image
+            style={[
+              StyleSheet.absoluteFillObject,
+              {
+                width: undefined,
+                height: undefined,
+                borderTopLeftRadius: theme.borderRadii.xl,
+              },
+            ]}
+            source={require("../../../assets/pattern3.png")}
+          />
         </Box>
       </Box>
     );
