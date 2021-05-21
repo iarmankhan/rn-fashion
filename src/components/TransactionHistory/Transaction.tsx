@@ -1,3 +1,4 @@
+import moment from "moment";
 import React from "react";
 import { Point } from "src/components/TransactionHistory/Graph";
 import { Box, Text } from "src/theme/Theme";
@@ -25,9 +26,9 @@ const Transaction: React.FC<TransactionProps> = ({ transaction }) => {
           />
           <Text variant="title3">{`#${transaction.id}`}</Text>
         </Box>
-        <Text color="darkGrey">{`$${transaction.value} - ${new Date(
+        <Text color="darkGrey">{`$${transaction.value} - ${moment(
           transaction.date
-        ).toLocaleDateString()}`}</Text>
+        ).format("D MMMM, YYYY")}`}</Text>
       </Box>
       <Box>
         <Text color="secondary" variant="button">
