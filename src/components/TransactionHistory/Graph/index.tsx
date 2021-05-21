@@ -1,3 +1,4 @@
+import moment from "moment";
 import React from "react";
 import { Dimensions } from "react-native";
 import Underlay, {
@@ -47,8 +48,11 @@ const Graph: React.FC<GraphProps> = ({ data, startDate, numberOfMonths }) => {
       />
       <Box {...{ width, height }}>
         {data.map((point) => {
-          // todo: fix this
-          const i = new Date(point.date - startDate).getMonth();
+          const i = Math.round(
+            moment
+              .duration(moment(point.date).diff(moment(startDate)))
+              .asMonths()
+          );
           return (
             <Box
               position="absolute"
