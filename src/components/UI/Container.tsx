@@ -55,7 +55,6 @@ const Container: React.FC<ContainerProps> = ({ children, pattern, footer }) => {
           />
           <Box
             borderRadius="xl"
-            borderTopLeftRadius={0}
             backgroundColor="background"
             flex={1}
             padding="xl"

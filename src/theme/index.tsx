@@ -1,13 +1,24 @@
-import { createTheme, useTheme as useReTheme } from "@shopify/restyle";
+import {
+  createTheme,
+  ThemeProvider as RestyleThemeProvider,
+  useTheme as useReTheme,
+} from "@shopify/restyle";
+import React from "react";
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 
 export const palette = {
   white: "white",
+  orange: "#FE5E33",
+  yellow: "#FFc641",
+  pink: "#FF87A2",
+  violet: "#442CB9",
+  lightBlue: "#BFEAF5",
+  green: "#2CB9B0",
 };
 
 const theme = createTheme({
   colors: {
-    primary: "#2CB9B0",
+    primary: palette.green,
     secondary: "#0C0D34",
     danger: "#FF0058",
     text: "rgba(12, 13, 52, 0.7)",
@@ -16,11 +27,14 @@ const theme = createTheme({
     darkGrey: "#808080",
     lightGrey: "#FAFAFA",
     primaryLight: "#E7F9F7",
-    orange: "#FE5E33",
-    yellow: "#FFc641",
-    pink: "#FF87A2",
-    violet: "#442CB9",
-    lightBlue: "#BFEAF5",
+
+    graph1: palette.orange,
+    graph2: palette.yellow,
+
+    drawer1: palette.orange,
+    drawer2: palette.yellow,
+    drawer3: palette.pink,
+    drawer4: palette.violet,
   },
   spacing: {
     s: 8,
@@ -34,7 +48,10 @@ const theme = createTheme({
     l: 25,
     xl: 75,
   },
-  breakpoints: {},
+  breakpoints: {
+    phone: 0,
+    tablet: 768,
+  },
   textVariants: {
     hero: {
       fontSize: 80,
@@ -93,4 +110,8 @@ export const makeStyles =
     return styles(currentTheme);
   };
 
-export default theme;
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  return <RestyleThemeProvider theme={theme}>{children}</RestyleThemeProvider>;
+};

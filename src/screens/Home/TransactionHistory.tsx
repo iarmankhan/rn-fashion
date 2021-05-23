@@ -15,13 +15,13 @@ const data: Point[] = [
   {
     date: new Date("2020-11-01").getTime(),
     value: 112.2,
-    color: "orange",
+    color: "graph1",
     id: 221345,
   },
   {
     date: new Date("2021-01-01").getTime(),
     value: 234.5,
-    color: "yellow",
+    color: "graph2",
     id: 232445,
   },
   {

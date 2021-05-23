@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, StyleSheet } from "react-native";
-import { useTheme } from "src/theme";
+import { palette, useTheme } from "src/theme";
 import { Box } from "src/theme/Theme";
 
 export const outfitIdeasAssets = [require("../../../assets/background.png")];
@@ -9,7 +9,7 @@ const Background: React.FC = () => {
   const theme = useTheme();
   return (
     <Box style={StyleSheet.absoluteFill}>
-      <Box flex={1 / 3} backgroundColor="lightBlue">
+      <Box flex={1 / 3} style={{ backgroundColor: palette.lightBlue }}>
         <Box
           flex={1}
           backgroundColor="background"
@@ -30,7 +30,7 @@ const Background: React.FC = () => {
           }}
         />
       </Box>
-      <Box flex={1 / 3} backgroundColor="lightBlue">
+      <Box flex={1 / 3} style={{ backgroundColor: palette.lightBlue }}>
         <Box flex={1} backgroundColor="secondary" borderTopLeftRadius="xl" />
       </Box>
     </Box>
