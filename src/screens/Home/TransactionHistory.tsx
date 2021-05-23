@@ -70,7 +70,10 @@ const TransactionHistory: React.FC<HomeNavigationProps<"TransactionHistory">> =
             numberOfMonths={numberOfMonths}
             startDate={startDate}
           />
-          <ScrollView contentContainerStyle={{ paddingBottom: footerHeight }}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingBottom: footerHeight }}
+          >
             {data.map((transaction) => (
               <Transaction key={transaction.id} transaction={transaction} />
             ))}

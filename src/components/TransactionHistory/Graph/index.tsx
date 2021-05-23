@@ -1,6 +1,11 @@
 import moment from "moment";
-import React from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import { Dimensions } from "react-native";
+import {
+  Transition,
+  Transitioning,
+  TransitioningView,
+} from "react-native-reanimated";
 import Underlay, {
   MARGIN,
 } from "src/components/TransactionHistory/Graph/Underlay";
@@ -24,8 +29,19 @@ interface GraphProps {
   numberOfMonths: number;
 }
 
+const transition = (
+  <Transition.Together>
+    <Transition.In
+      type="slide-bottom"
+      durationMs={1000}
+      interpolation="easeInOut"
+    />
+  </Transition.Together>
+);
+
 const Graph: React.FC<GraphProps> = ({ data, startDate, numberOfMonths }) => {
   const theme = useTheme();
+  const ref = useRef<TransitioningView>(null);
   const canvasWidth = wWidth - theme.spacing.m * 2;
   const canvasHeight = canvasWidth * aspectRatio;
 
@@ -37,6 +53,10 @@ const Graph: React.FC<GraphProps> = ({ data, startDate, numberOfMonths }) => {
   const maxY = Math.max(...values);
   const step = width / numberOfMonths;
 
+  useLayoutEffect(() => {
+    ref.current?.animateNextTransition();
+  }, []);
+
   return (
     <Box paddingBottom={MARGIN} paddingLeft={MARGIN} marginTop="xl">
       <Underlay
@@ -46,7 +66,11 @@ const Graph: React.FC<GraphProps> = ({ data, startDate, numberOfMonths }) => {
         numberOfMonths={numberOfMonths}
         step={step}
       />
-      <Box {...{ width, height }}>
+      <Transitioning.View
+        transition={transition}
+        ref={ref}
+        style={{ width, height, overflow: "hidden" }}
+      >
         {data.map((point) => {
           const i = Math.round(
             moment
@@ -86,7 +110,7 @@ const Graph: React.FC<GraphProps> = ({ data, startDate, numberOfMonths }) => {
             </Box>
           );
         })}
-      </Box>
+      </Transitioning.View>
     </Box>
   );
 };
