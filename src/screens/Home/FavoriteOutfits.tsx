@@ -70,7 +70,10 @@ const FavoriteOutfits: React.FC<HomeNavigationProps<"FavoriteOutfits">> = ({
   navigation,
 }) => {
   const transition = (
-    <Transition.Change interpolation="easeInOut" durationMs={1000} />
+    <Transition.Together>
+      <Transition.Out type="fade" />
+      <Transition.In type="fade" />
+    </Transition.Together>
   );
   const theme = useTheme();
   const width = (wWidth - theme.spacing.m * 3) / 2;
@@ -99,14 +102,14 @@ const FavoriteOutfits: React.FC<HomeNavigationProps<"FavoriteOutfits">> = ({
             <Box flexDirection="row">
               <Box>
                 {outfits
-                  .filter(({ id }) => id % 2 !== 0)
+                  .filter((_, i) => i % 2 !== 0)
                   .map((outfit) => (
                     <Outfit key={outfit.id} {...{ outfit, width }} />
                   ))}
               </Box>
               <Box marginLeft="m">
                 {outfits
-                  .filter(({ id }) => id % 2 === 0)
+                  .filter((_, i) => i % 2 === 0)
                   .map((outfit) => (
                     <Outfit key={outfit.id} {...{ outfit, width }} />
                   ))}
