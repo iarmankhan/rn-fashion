@@ -1,10 +1,19 @@
+import { useNavigation } from "@react-navigation/native";
 import { Theme } from "src/theme";
+import { HomeRoutes } from "src/types/navigation";
 
-// TODO: screen type fix
-export interface DrawerItemType {
+export interface BaseDrawerItem {
   icon: string;
   color: keyof Theme["colors"];
   label: string;
-  screen: string;
   id: string;
 }
+
+export interface ScreenDrawerItem extends BaseDrawerItem {
+  screen: keyof HomeRoutes;
+}
+export interface OnPressDrawerItem extends BaseDrawerItem {
+  onPress: (navigation: ReturnType<typeof useNavigation>) => void;
+}
+
+export type DrawerItemType = ScreenDrawerItem | OnPressDrawerItem;

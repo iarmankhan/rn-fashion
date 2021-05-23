@@ -1,3 +1,4 @@
+import { CommonActions } from "@react-navigation/native";
 import { useFormik } from "formik";
 import React, { useRef } from "react";
 import { TextInput as RNTextInput } from "react-native";
@@ -31,7 +32,13 @@ const Login: React.FC<AuthNavigationProps<"Login">> = ({ navigation }) => {
   } = useFormik({
     validationSchema: LoginSchema,
     initialValues: { email: "", password: "", remember: false },
-    onSubmit: () => navigation.navigate("Home"),
+    onSubmit: () =>
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: "Home" }],
+        })
+      ),
   });
   const password = useRef<RNTextInput>(null);
 

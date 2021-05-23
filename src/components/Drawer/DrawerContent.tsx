@@ -2,6 +2,7 @@ import {
   DrawerContentComponentProps,
   DrawerContentOptions,
 } from "@react-navigation/drawer";
+import { CommonActions } from "@react-navigation/native";
 import React from "react";
 import { Dimensions, Image, ScrollView } from "react-native";
 import DrawerItem from "src/components/Drawer/DrawerItem";
@@ -36,7 +37,7 @@ const items: DrawerItemType[] = [
     id: "2",
     icon: "user",
     label: "Edit Profile",
-    screen: "EditProfile",
+    screen: "FavoriteOutfits",
     color: "yellow",
   },
   {
@@ -50,14 +51,20 @@ const items: DrawerItemType[] = [
     id: "4",
     icon: "settings",
     label: "Notifications Settings",
-    screen: "NotificationsSettings",
+    screen: "FavoriteOutfits",
     color: "violet",
   },
   {
     id: "5",
     icon: "log-out",
     label: "Logout",
-    screen: "Logout",
+    onPress: (navigation) =>
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: "Authentication" }],
+        })
+      ),
     color: "secondary",
   },
 ];
@@ -121,7 +128,7 @@ const DrawerContent = ({
           </Box>
           <ScrollView>
             {items.map((item) => (
-              <DrawerItem key={item.id} {...{ navigation }} {...item} />
+              <DrawerItem key={item.id} {...item} />
             ))}
           </ScrollView>
         </Box>
