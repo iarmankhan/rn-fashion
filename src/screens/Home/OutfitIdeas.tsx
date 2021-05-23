@@ -36,7 +36,7 @@ const OutfitIdeas: React.FC<HomeNavigationProps<"OutfitIdeas">> = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const aIndex = useTransition(currentIndex);
   return (
-    <Box flex={1} backgroundColor="white">
+    <Box flex={1} backgroundColor="background">
       <Header
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
         right={{ icon: "shopping-bag", onPress: () => true }}

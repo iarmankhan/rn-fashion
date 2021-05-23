@@ -1,13 +1,17 @@
 import { createTheme, useTheme as useReTheme } from "@shopify/restyle";
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 
+export const palette = {
+  white: "white",
+};
+
 const theme = createTheme({
   colors: {
     primary: "#2CB9B0",
     secondary: "#0C0D34",
     danger: "#FF0058",
     text: "rgba(12, 13, 52, 0.7)",
-    white: "white",
+    background: palette.white,
     grey: "#F4F0EF",
     darkGrey: "#808080",
     lightGrey: "#FAFAFA",
@@ -36,7 +40,7 @@ const theme = createTheme({
       fontSize: 80,
       lineHeight: 80,
       fontFamily: "bold",
-      color: "white",
+      color: "background",
       textAlign: "center",
     },
     title1: {

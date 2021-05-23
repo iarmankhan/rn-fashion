@@ -23,12 +23,12 @@ const CheckBox: React.FC<CheckBoxProps> = ({ label, checked, onChange }) => {
           borderRadius="s"
           height={20}
           width={20}
-          backgroundColor={checked ? "primary" : "white"}
+          backgroundColor={checked ? "primary" : "background"}
           marginRight="s"
           borderWidth={1}
           borderColor="primary"
         >
-          <Icon name="check" color="white" />
+          <Icon name="check" color="background" />
         </Box>
         <Text variant="button">{label}</Text>
       </Box>

@@ -84,7 +84,7 @@ const FavoriteOutfits: React.FC<HomeNavigationProps<"FavoriteOutfits">> = ({
   const list = useRef<TransitioningView>(null);
 
   return (
-    <Box flex={1} backgroundColor="white">
+    <Box flex={1} backgroundColor="background">
       <Header
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
         right={{ icon: "shopping-bag", onPress: () => true }}

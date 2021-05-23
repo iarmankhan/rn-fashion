@@ -37,7 +37,7 @@ const Outfit: React.FC<OutfitProps> = ({ outfit, width }) => {
           <RoundedIcon
             name="check"
             size={22}
-            color="white"
+            color="background"
             backgroundColor="primary"
           />
         )}

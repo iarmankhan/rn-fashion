@@ -31,7 +31,7 @@ const DrawerItem: React.FC<DrawerItemType> = ({
           name={icon}
           size={36}
           iconRatio={0.5}
-          color="white"
+          color="background"
           backgroundColor={color}
         />
         <Text variant="button" color="secondary" marginLeft="m">

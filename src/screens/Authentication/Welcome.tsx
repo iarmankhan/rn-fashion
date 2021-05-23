@@ -19,7 +19,7 @@ export const welcomeAssets = [picture.src];
 const Welcome: React.FC<AuthNavigationProps<"Welcome">> = ({ navigation }) => {
   const theme = useTheme();
   return (
-    <Box flex={1} backgroundColor="white">
+    <Box flex={1} backgroundColor="background">
       <Box
         flex={1}
         borderBottomRightRadius="xl"
@@ -46,7 +46,7 @@ const Welcome: React.FC<AuthNavigationProps<"Welcome">> = ({ navigation }) => {
           left={0}
         />
         <Box
-          backgroundColor="white"
+          backgroundColor="background"
           justifyContent="space-evenly"
           alignItems="center"
           borderTopLeftRadius="xl"

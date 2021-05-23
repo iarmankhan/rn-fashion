@@ -130,7 +130,7 @@ const OnBoarding: React.FC<AuthNavigationProps<"OnBoarding">> = ({
 const useStyles = makeStyles((theme) => ({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: theme.colors.background,
   },
   underlay: {
     ...StyleSheet.absoluteFillObject,
@@ -148,7 +148,7 @@ const useStyles = makeStyles((theme) => ({
   },
   footerContent: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "background",
     borderTopLeftRadius: theme.borderRadii.xl,
   },
   pagination: {

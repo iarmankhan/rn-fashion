@@ -29,7 +29,7 @@ const Category: React.FC<CategoryProps> = ({
               style={{
                 ...StyleSheet.absoluteFillObject,
                 borderRadius: OUTER_RADIUS,
-                backgroundColor: "white",
+                backgroundColor: "background",
                 borderColor: backgroundColor,
                 borderWidth: 1,
               }}

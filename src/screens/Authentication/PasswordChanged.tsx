@@ -20,7 +20,7 @@ const PasswordChanged: React.FC<AuthNavigationProps<"PasswordChanged">> = ({
             onPress={() => navigation.pop()}
             name="x"
             size={70}
-            backgroundColor="white"
+            backgroundColor="background"
             color="secondary"
           />
         </Box>

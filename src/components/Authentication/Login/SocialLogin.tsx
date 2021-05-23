@@ -12,7 +12,7 @@ const SocialIcon = ({ children }: { children: React.ReactNode }) => {
   return (
     <TouchableOpacity activeOpacity={0.8}>
       <Box
-        backgroundColor="white"
+        backgroundColor="background"
         width={SIZE}
         height={SIZE}
         borderRadius="l"

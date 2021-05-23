@@ -34,7 +34,7 @@ const Container: React.FC<ContainerProps> = ({ children, pattern, footer }) => {
         }
         backgroundColor="secondary"
       >
-        <Box backgroundColor="white">
+        <Box backgroundColor="background">
           <Box
             borderBottomLeftRadius="xl"
             overflow="hidden"
@@ -56,7 +56,7 @@ const Container: React.FC<ContainerProps> = ({ children, pattern, footer }) => {
           <Box
             borderRadius="xl"
             borderTopLeftRadius={0}
-            backgroundColor="white"
+            backgroundColor="background"
             flex={1}
             padding="xl"
             justifyContent="center"
