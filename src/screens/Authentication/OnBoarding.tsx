@@ -148,7 +148,7 @@ const useStyles = makeStyles((theme) => ({
   },
   footerContent: {
     flex: 1,
-    backgroundColor: "background",
+    backgroundColor: theme.colors.background,
     borderTopLeftRadius: theme.borderRadii.xl,
   },
   pagination: {
