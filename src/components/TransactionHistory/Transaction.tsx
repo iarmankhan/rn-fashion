@@ -26,7 +26,7 @@ const Transaction: React.FC<TransactionProps> = ({ transaction }) => {
           />
           <Text variant="title3">{`#${transaction.id}`}</Text>
         </Box>
-        <Text color="darkGrey">{`$${transaction.value} - ${moment(
+        <Text color="info">{`$${transaction.value} - ${moment(
           transaction.date
         ).format("D MMMM, YYYY")}`}</Text>
       </Box>

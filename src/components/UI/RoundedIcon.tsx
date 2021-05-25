@@ -7,8 +7,9 @@ export interface RoundedIconProps {
   name: string;
   size: number;
   color: keyof Theme["colors"];
-  backgroundColor: keyof Theme["colors"];
+  backgroundColor: keyof Theme["colors"] | undefined;
   iconRatio?: number;
+  align?: "center" | "flex-start" | "flex-end";
 }
 
 const RoundedIcon: React.FC<RoundedIconProps> = ({
@@ -17,13 +18,14 @@ const RoundedIcon: React.FC<RoundedIconProps> = ({
   color,
   backgroundColor,
   iconRatio,
+  align = "center",
 }) => {
   const iconSize = size * (iconRatio ?? 0.7);
   return (
     <Box
       height={size}
       width={size}
-      alignItems="center"
+      alignItems={align}
       justifyContent="center"
       style={{ borderRadius: size / 2 }}
       {...{ backgroundColor }}

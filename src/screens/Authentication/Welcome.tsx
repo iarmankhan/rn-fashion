@@ -23,7 +23,7 @@ const Welcome: React.FC<AuthNavigationProps<"Welcome">> = ({ navigation }) => {
       <Box
         flex={1}
         borderBottomRightRadius="xl"
-        backgroundColor="grey"
+        backgroundColor="background2"
         alignItems="center"
         justifyContent="flex-end"
       >
@@ -39,7 +39,7 @@ const Welcome: React.FC<AuthNavigationProps<"Welcome">> = ({ navigation }) => {
       <Box flex={1} borderTopLeftRadius="xl">
         <Box
           position="absolute"
-          backgroundColor="grey"
+          backgroundColor="background2"
           top={0}
           bottom={0}
           right={0}

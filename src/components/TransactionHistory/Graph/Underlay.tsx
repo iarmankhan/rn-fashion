@@ -40,11 +40,11 @@ const Underlay: React.FC<UnderlayProps> = ({
             }}
           >
             <Box width={theme.spacing[MARGIN]} paddingRight="s">
-              <Text color="darkGrey" textAlign="right">
+              <Text color="info" textAlign="right">
                 {Math.round(lerp(minY, maxY, t))}
               </Text>
             </Box>
-            <Box zIndex={0} flex={1} height={1} backgroundColor="grey" />
+            <Box zIndex={0} flex={1} height={1} backgroundColor="background2" />
           </Box>
         ))}
       </Box>
@@ -59,7 +59,7 @@ const Underlay: React.FC<UnderlayProps> = ({
           .map((_, i) => moment(minDate.clone().add(i, "month")))
           .map((date, index) => (
             <Box key={index} width={step}>
-              <Text color="darkGrey" textAlign="center">
+              <Text color="info" textAlign="center">
                 {moment(date).format("MMM")}
               </Text>
             </Box>

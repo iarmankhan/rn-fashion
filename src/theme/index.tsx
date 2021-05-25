@@ -23,9 +23,8 @@ const theme = createTheme({
     danger: "#FF0058",
     text: "rgba(12, 13, 52, 0.7)",
     background: palette.white,
-    grey: "#F4F0EF",
-    darkGrey: "#808080",
-    lightGrey: "#FAFAFA",
+    background2: "#F4F0EF",
+    info: "#808080",
     primaryLight: "#E7F9F7",
 
     graph1: palette.orange,

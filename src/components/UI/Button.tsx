@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   const theme = useTheme<Theme>();
 
   const backgroundColor =
-    variant === "primary" ? theme.colors.primary : theme.colors.grey;
+    variant === "primary" ? theme.colors.primary : theme.colors.background2;
   const color =
     variant === "primary" ? theme.colors.background : theme.colors.secondary;
 
