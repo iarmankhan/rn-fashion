@@ -8,7 +8,7 @@ interface HeaderProps {
     icon: string;
     onPress: () => void;
   };
-  right: {
+  right?: {
     icon: string;
     onPress: () => void;
   };
@@ -44,14 +44,18 @@ const Header: React.FC<HeaderProps> = ({
       <Text variant="header" {...{ color }}>
         {title.toUpperCase()}
       </Text>
-      <RoundedIconButton
-        onPress={right.onPress}
-        name={right.icon}
-        size={44}
-        iconRatio={0.5}
-        align={backgroundColor === undefined ? "flex-end" : "center"}
-        {...{ color, backgroundColor }}
-      />
+      {right ? (
+        <RoundedIconButton
+          onPress={right.onPress}
+          name={right.icon}
+          size={44}
+          iconRatio={0.5}
+          align={backgroundColor === undefined ? "flex-end" : "center"}
+          {...{ color, backgroundColor }}
+        />
+      ) : (
+        <Box width={44} />
+      )}
     </Box>
   );
 };

@@ -37,7 +37,7 @@ const items: DrawerItemType[] = [
     id: "2",
     icon: "user",
     label: "Edit Profile",
-    screen: "FavoriteOutfits",
+    screen: "EditProfile",
     color: "drawer2",
   },
   {
