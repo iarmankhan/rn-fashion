@@ -1,5 +1,5 @@
 import React from "react";
-import { BorderlessButton } from "react-native-gesture-handler";
+import BorderlessTap from "src/components/UI/BorderlessTap";
 import RoundedIcon, { RoundedIconProps } from "src/components/UI/RoundedIcon";
 
 interface RoundedIconButtonProps extends RoundedIconProps {
@@ -11,7 +11,7 @@ const RoundedIconButton: React.FC<RoundedIconButtonProps> = ({
   ...props
 }) => {
   return (
-    <BorderlessButton
+    <BorderlessTap
       style={{
         borderRadius: props.size / 2,
         width: props.size,
@@ -20,7 +20,7 @@ const RoundedIconButton: React.FC<RoundedIconButtonProps> = ({
       {...{ onPress }}
     >
       <RoundedIcon {...props} />
-    </BorderlessButton>
+    </BorderlessTap>
   );
 };
 

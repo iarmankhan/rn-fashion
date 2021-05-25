@@ -1,4 +1,5 @@
 import React from "react";
+import { ViewStyle } from "react-native";
 import { State, TapGestureHandler } from "react-native-gesture-handler";
 import Animated, {
   add,
@@ -24,9 +25,14 @@ import {
 interface BorderlessTapProps {
   children: React.ReactNode;
   onPress: () => void;
+  style?: ViewStyle;
 }
 
-const BorderlessTap: React.FC<BorderlessTapProps> = ({ children, onPress }) => {
+const BorderlessTap: React.FC<BorderlessTapProps> = ({
+  children,
+  style,
+  onPress,
+}) => {
   const clock = useClock();
   const start = useValue(0);
   const { gestureHandler, state } = useTapGestureHandler();
@@ -54,7 +60,7 @@ const BorderlessTap: React.FC<BorderlessTapProps> = ({ children, onPress }) => {
 
   return (
     <TapGestureHandler {...gestureHandler}>
-      <Animated.View style={{ opacity }}>{children}</Animated.View>
+      <Animated.View style={{ ...style, opacity }}>{children}</Animated.View>
     </TapGestureHandler>
   );
 };
