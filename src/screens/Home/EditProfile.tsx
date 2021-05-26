@@ -1,11 +1,23 @@
 import React from "react";
 import { Dimensions } from "react-native";
+import Tabs from "src/components/EditProfile/Tabs";
 import Header from "src/components/UI/Header";
 import { useTheme } from "src/theme";
 import { Box, Text } from "src/theme/Theme";
 import { HomeNavigationProps } from "src/types/navigation";
 
 const { width } = Dimensions.get("window");
+
+const tabs = [
+  {
+    id: "configuration",
+    title: "Configuration",
+  },
+  {
+    id: "info",
+    title: "Personal Info",
+  },
+];
 
 const EditProfile: React.FC<HomeNavigationProps<"EditProfile">> = ({
   navigation,
@@ -54,6 +66,8 @@ const EditProfile: React.FC<HomeNavigationProps<"EditProfile">> = ({
           </Text>
         </Box>
       </Box>
+
+      <Tabs tabs={tabs} />
     </Box>
   );
 };
