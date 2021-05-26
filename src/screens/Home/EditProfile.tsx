@@ -1,5 +1,7 @@
 import React from "react";
 import { Dimensions } from "react-native";
+import Configuration from "src/components/EditProfile/Configuration";
+import PersonalInfo from "src/components/EditProfile/PersonalInfo";
 import Tabs from "src/components/EditProfile/Tabs";
 import Header from "src/components/UI/Header";
 import { useTheme } from "src/theme";
@@ -67,7 +69,10 @@ const EditProfile: React.FC<HomeNavigationProps<"EditProfile">> = ({
         </Box>
       </Box>
 
-      <Tabs tabs={tabs} />
+      <Tabs tabs={tabs}>
+        <Configuration />
+        <PersonalInfo />
+      </Tabs>
     </Box>
   );
 };
