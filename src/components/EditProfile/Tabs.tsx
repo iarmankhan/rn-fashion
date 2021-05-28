@@ -50,6 +50,7 @@ const Tabs: React.FC<TabsProps> = ({ tabs, children }) => {
       </Box>
       <Animated.View
         style={{
+          flex: 1,
           width: width * tabs.length,
           flexDirection: "row",
           transform: [{ translateX: multiply(-width, transition) }],

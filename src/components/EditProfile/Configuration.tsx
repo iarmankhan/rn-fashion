@@ -19,20 +19,22 @@ const brands = [
   { value: "le-coq-sportif", label: "Le Coq Sportif" },
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface ConfigurationProps {}
 
 const Configuration: React.FC<ConfigurationProps> = () => {
   return (
     <ScrollView>
       <Box padding="m">
-        <Text variant="body">What type of outfit you usually wear?</Text>
+        <Box marginBottom="s">
+          <Text variant="body">What type of outfit you usually wear?</Text>
+          <CheckboxGroup options={outfitTypes} />
+        </Box>
+        <Box marginBottom="s">
+          <Text variant="body">My preferred brands</Text>
+          <CheckboxGroup options={brands} />
+        </Box>
       </Box>
-      <CheckboxGroup options={outfitTypes} />
-
-      <Box padding="m">
-        <Text variant="body">My preferred brands</Text>
-      </Box>
-      <CheckboxGroup options={brands} />
     </ScrollView>
   );
 };
