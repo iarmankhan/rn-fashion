@@ -5,9 +5,10 @@ import { Box } from "src/theme/Theme";
 
 interface CheckboxGroupProps {
   options: { value: string; label: string }[];
+  radio?: boolean;
 }
 
-const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ options }) => {
+const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ options, radio }) => {
   const theme = useTheme();
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
   return (
@@ -29,12 +30,16 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ options }) => {
             variant={isSelected ? "primary" : "default"}
             label={label}
             onPress={() => {
-              if (isSelected) {
-                setSelectedValues((prevValues) =>
-                  prevValues.filter((v) => v !== value)
-                );
+              if (radio) {
+                setSelectedValues([value]);
               } else {
-                setSelectedValues((prevValues) => [...prevValues, value]);
+                if (isSelected) {
+                  setSelectedValues((prevValues) =>
+                    prevValues.filter((v) => v !== value)
+                  );
+                } else {
+                  setSelectedValues((prevValues) => [...prevValues, value]);
+                }
               }
             }}
           />

@@ -45,7 +45,7 @@ const Configuration: React.FC<ConfigurationProps> = () => {
       <Box padding="m">
         <Box marginBottom="s">
           <Text variant="body">What type of outfit you usually wear?</Text>
-          <CheckboxGroup options={outfitTypes} />
+          <CheckboxGroup options={outfitTypes} radio />
         </Box>
 
         <Box marginBottom="s">
