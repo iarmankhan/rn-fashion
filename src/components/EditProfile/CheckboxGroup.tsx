@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "src/components/UI/Button";
+import { useTheme } from "src/theme";
 import { Box } from "src/theme/Theme";
 
 interface CheckboxGroupProps {
@@ -7,6 +8,7 @@ interface CheckboxGroupProps {
 }
 
 const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ options }) => {
+  const theme = useTheme();
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
   return (
     <Box flexDirection="row" flexWrap="wrap" marginTop="s">
@@ -19,10 +21,10 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ options }) => {
             style={{
               width: "auto",
               height: "auto",
-              paddingHorizontal: 16,
-              paddingVertical: 8,
-              marginVertical: 4,
-              marginRight: 4,
+              paddingHorizontal: theme.spacing.m,
+              paddingVertical: theme.spacing.s,
+              marginBottom: theme.spacing.m,
+              marginRight: theme.spacing.s,
             }}
             variant={isSelected ? "primary" : "default"}
             label={label}

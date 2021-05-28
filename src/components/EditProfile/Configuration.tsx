@@ -1,12 +1,29 @@
 import React from "react";
 import { ScrollView } from "react-native";
 import CheckboxGroup from "src/components/EditProfile/CheckboxGroup";
+import RoundedCheckboxGroup from "src/components/EditProfile/RoundedCheckboxGroup";
 import { Box, Text } from "src/theme/Theme";
 
 const outfitTypes = [
   { value: "men", label: "For men" },
   { value: "women", label: "For women" },
   { value: "both", label: "For both" },
+];
+
+const sizes = [
+  { value: "s" },
+  { value: "m" },
+  { value: "l" },
+  { value: "xl" },
+  { value: "xxl" },
+];
+
+const colors = [
+  { value: "#0c0d34" },
+  { value: "#ff0058" },
+  { value: "#50b9de" },
+  { value: "#00d99a" },
+  { value: "#fe5e33" },
 ];
 
 const brands = [
@@ -29,6 +46,16 @@ const Configuration: React.FC<ConfigurationProps> = () => {
         <Box marginBottom="s">
           <Text variant="body">What type of outfit you usually wear?</Text>
           <CheckboxGroup options={outfitTypes} />
+        </Box>
+
+        <Box marginBottom="s">
+          <Text variant="body">What is your clothing size?</Text>
+          <RoundedCheckboxGroup options={sizes} />
+        </Box>
+
+        <Box marginBottom="s">
+          <Text variant="body">My preferred clothing colors</Text>
+          <RoundedCheckboxGroup options={colors} valueIsColor />
         </Box>
         <Box marginBottom="s">
           <Text variant="body">My preferred brands</Text>
