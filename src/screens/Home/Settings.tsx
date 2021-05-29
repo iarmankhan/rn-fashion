@@ -1,21 +1,16 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
 
 import Header from "../../components/UI/Header";
 import { Box } from "../../theme/Theme";
 import { HomeNavigationProps } from "../../types/navigation";
 import SettingsRow from "../../components/Settings/SettingsRow";
-import ContentFooter from "../../components/UI/ContentFooter";
+import ContentWithFooter from "../../components/UI/ContentWithFooter";
 
 const Settings: React.FC<HomeNavigationProps<"Settings">> = ({
   navigation,
 }) => {
   return (
-    <>
-      <View
-        style={{ ...StyleSheet.absoluteFillObject, backgroundColor: "red" }}
-      />
-
+    <ContentWithFooter>
       <Box backgroundColor="background">
         <Header
           left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
@@ -41,9 +36,7 @@ const Settings: React.FC<HomeNavigationProps<"Settings">> = ({
           />
         </Box>
       </Box>
-
-      <ContentFooter />
-    </>
+    </ContentWithFooter>
   );
 };
 
