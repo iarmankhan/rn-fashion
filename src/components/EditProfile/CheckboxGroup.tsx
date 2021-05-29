@@ -22,8 +22,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ options, radio }) => {
             style={{
               width: "auto",
               height: "auto",
-              paddingHorizontal: theme.spacing.m,
-              paddingVertical: theme.spacing.s,
+              padding: theme.spacing.m,
               marginBottom: theme.spacing.m,
               marginRight: theme.spacing.s,
             }}

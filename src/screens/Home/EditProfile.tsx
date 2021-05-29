@@ -27,7 +27,7 @@ const EditProfile: React.FC<HomeNavigationProps<"EditProfile">> = ({
   const theme = useTheme();
   return (
     <Box flex={1} backgroundColor="background">
-      <Box flex={0.2} backgroundColor="background">
+      <Box flex={0.3} backgroundColor="background">
         <Box
           position="absolute"
           top={0}
