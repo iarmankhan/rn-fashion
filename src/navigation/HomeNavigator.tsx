@@ -9,6 +9,8 @@ import OutfitIdeas from "src/screens/Home/OutfitIdeas";
 import TransactionHistory from "src/screens/Home/TransactionHistory";
 import { HomeRoutes } from "src/types/navigation";
 
+import Settings from "../screens/Home/Settings";
+
 const Drawer = createDrawerNavigator<HomeRoutes>();
 
 const HomeNavigator: React.FC = () => {
@@ -22,6 +24,7 @@ const HomeNavigator: React.FC = () => {
       <Drawer.Screen name="FavoriteOutfits" component={FavoriteOutfits} />
       <Drawer.Screen name="TransactionHistory" component={TransactionHistory} />
       <Drawer.Screen name="EditProfile" component={EditProfile} />
+      <Drawer.Screen name="Settings" component={Settings} />
     </Drawer.Navigator>
   );
 };

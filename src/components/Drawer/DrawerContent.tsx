@@ -51,7 +51,7 @@ const items: DrawerItemType[] = [
     id: "4",
     icon: "settings",
     label: "Notifications Settings",
-    screen: "FavoriteOutfits",
+    screen: "Settings",
     color: "drawer4",
   },
   {
