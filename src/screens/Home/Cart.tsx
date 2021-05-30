@@ -33,7 +33,16 @@ const Cart: React.FC<HomeNavigationProps<"Cart">> = ({ navigation }) => {
           3 Items Added
         </Text>
       </Box>
-      <ScrollView>
+      <ScrollView
+        style={{
+          borderBottomLeftRadius: theme.borderRadii.xl,
+          borderBottomRightRadius: theme.borderRadii.xl,
+        }}
+        showsVerticalScrollIndicator={false}
+      >
+        <CartItem />
+        <CartItem />
+        <CartItem />
         <CartItem />
       </ScrollView>
     </CartContainer>
