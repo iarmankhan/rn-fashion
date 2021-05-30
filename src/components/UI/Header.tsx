@@ -24,7 +24,6 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const insets = useSafeAreaInsets();
   const color = dark ? "background" : "secondary";
-  const backgroundColor = dark ? "secondary" : undefined;
   return (
     <Box
       flexDirection="row"
@@ -38,8 +37,8 @@ const Header: React.FC<HeaderProps> = ({
         name={left.icon}
         size={44}
         iconRatio={0.5}
-        align={backgroundColor === undefined ? "flex-start" : "center"}
-        {...{ color, backgroundColor }}
+        align={"center"}
+        {...{ color }}
       />
       <Text variant="header" {...{ color }}>
         {title.toUpperCase()}
@@ -50,8 +49,8 @@ const Header: React.FC<HeaderProps> = ({
           name={right.icon}
           size={44}
           iconRatio={0.5}
-          align={backgroundColor === undefined ? "flex-end" : "center"}
-          {...{ color, backgroundColor }}
+          align={"center"}
+          {...{ color }}
         />
       ) : (
         <Box width={44} />
