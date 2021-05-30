@@ -87,7 +87,10 @@ const DrawerContent = ({
         >
           <Header
             left={{ icon: "x", onPress: () => navigation.closeDrawer() }}
-            right={{ icon: "shopping-bag", onPress: () => true }}
+            right={{
+              icon: "shopping-bag",
+              onPress: () => navigation.navigate("Cart"),
+            }}
             title="Menu"
             dark
           />

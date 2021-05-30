@@ -8,8 +8,8 @@ import FavoriteOutfits from "src/screens/Home/FavoriteOutfits";
 import OutfitIdeas from "src/screens/Home/OutfitIdeas";
 import TransactionHistory from "src/screens/Home/TransactionHistory";
 import { HomeRoutes } from "src/types/navigation";
-
-import Settings from "../screens/Home/Settings";
+import Settings from "src/screens/Home/Settings";
+import Cart from "src/screens/Home/Cart";
 
 const Drawer = createDrawerNavigator<HomeRoutes>();
 
@@ -25,6 +25,7 @@ const HomeNavigator: React.FC = () => {
       <Drawer.Screen name="TransactionHistory" component={TransactionHistory} />
       <Drawer.Screen name="EditProfile" component={EditProfile} />
       <Drawer.Screen name="Settings" component={Settings} />
+      <Drawer.Screen name="Cart" component={Cart} />
     </Drawer.Navigator>
   );
 };

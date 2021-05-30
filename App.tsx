@@ -1,8 +1,8 @@
+import "react-native-gesture-handler";
 import "intl";
 import "intl/locale-data/jsonp/en";
 import * as React from "react";
 import { Platform } from "react-native";
-import "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { drawerAssets } from "src/components/Drawer/DrawerContent";
 import AppStackNavigator from "src/navigation/AppStackNavigator";
