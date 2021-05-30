@@ -1,8 +1,10 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { Dimensions, StyleSheet, View } from "react-native";
 import { Text } from "src/theme/Theme";
 
 import Button from "../../UI/Button";
+
+const { width } = Dimensions.get("window");
 
 interface SubSlideProps {
   last: boolean;
@@ -39,6 +41,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 44,
+    width,
   },
   subtitle: {
     textAlign: "center",
