@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import Svg, { Path } from "react-native-svg";
 
@@ -13,7 +13,10 @@ const height = 100 * aspectRatio;
 
 const d = "M 0 0 A 50 50 0 0 0 50 50 H 325 A 50 50 0 0 1 375 100 V 0 Z";
 
+const defaultItems = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
+
 const Cart: React.FC<HomeNavigationProps<"Cart">> = ({ navigation }) => {
+  const [items, setItems] = useState(defaultItems);
   const theme = useTheme();
   return (
     <CartContainer>
@@ -35,10 +38,15 @@ const Cart: React.FC<HomeNavigationProps<"Cart">> = ({ navigation }) => {
           }}
           showsVerticalScrollIndicator={false}
         >
-          <CartItem />
-          <CartItem />
-          <CartItem />
-          <CartItem />
+          {items.map((item, index) => (
+            <CartItem
+              key={item.id}
+              onDelete={() => {
+                items.splice(index, 1);
+                setItems(items.concat());
+              }}
+            />
+          ))}
         </ScrollView>
         <Box
           style={{ position: "absolute", top: 0, left: 0, right: 0, height }}
