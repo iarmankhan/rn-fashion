@@ -28,6 +28,7 @@ const theme = createTheme({
     background: palette.white,
     background2: "#F4F0EF",
     info: "#808080",
+    edit: palette.lightBlue,
     primaryLight: "#E7F9F7",
 
     graph1: palette.orange,
