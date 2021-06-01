@@ -8,6 +8,7 @@ import { HomeNavigationProps } from "../../types/navigation";
 import { Box, Text } from "../../theme/Theme";
 import CartItem from "../../components/Cart/CartItem";
 import { aspectRatio, useTheme } from "../../theme";
+import Checkout from "../../components/Cart/Checkout";
 
 const height = 100 * aspectRatio;
 
@@ -19,7 +20,7 @@ const Cart: React.FC<HomeNavigationProps<"Cart">> = ({ navigation }) => {
   const [items, setItems] = useState(defaultItems);
   const theme = useTheme();
   return (
-    <CartContainer>
+    <CartContainer CheckoutComponent={Checkout}>
       <Box backgroundColor="primary">
         <Header
           dark
