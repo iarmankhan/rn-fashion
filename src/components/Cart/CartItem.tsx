@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Box, Text } from "../../theme/Theme";
+import { useTheme } from "../../theme";
 
 import SwipableRow from "./SwipableRow";
 
@@ -9,8 +10,10 @@ interface CartItemProps {
 }
 
 const CartItem: React.FC<CartItemProps> = ({ onDelete }) => {
+  const theme = useTheme();
+  const height = 120 + theme.spacing.m * 2;
   return (
-    <SwipableRow onDelete={onDelete}>
+    <SwipableRow onDelete={onDelete} height={height}>
       <Box padding="m" flexDirection="row">
         <Box
           width={120}
