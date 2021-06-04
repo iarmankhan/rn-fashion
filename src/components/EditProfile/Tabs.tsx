@@ -1,10 +1,10 @@
 import React, { Children, useState } from "react";
 import { Dimensions } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
-import Animated, { multiply } from "react-native-reanimated";
-import { useTransition, mix } from "react-native-redash/lib/module/v1";
+import Animated, { useAnimatedStyle } from "react-native-reanimated";
 import { useTheme } from "src/theme";
 import { Box, Text } from "src/theme/Theme";
+import { mix, useTiming } from "react-native-redash";
 
 const { width } = Dimensions.get("window");
 
@@ -21,8 +21,30 @@ interface TabsProps {
 const Tabs: React.FC<TabsProps> = ({ tabs, children }) => {
   const theme = useTheme();
   const [index, setIndex] = useState(0);
-  const transition = useTransition(index);
-  const translateX = mix(transition, width * 0.25, width * 0.75);
+  const transition = useTiming(index);
+
+  const dotStyle = useAnimatedStyle(() => ({
+    position: "absolute",
+    left: -5,
+    bottom: 0,
+    backgroundColor: theme.colors.primary,
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    transform: [
+      {
+        translateX: mix(transition.value, width * 0.25, width * 0.75),
+      },
+    ],
+  }));
+
+  const tabStyle = useAnimatedStyle(() => ({
+    flex: 1,
+    width: width * tabs.length,
+    flexDirection: "row",
+    transform: [{ translateX: -width * transition.value }],
+  }));
+
   return (
     <Box flex={1}>
       <Box flexDirection="row">
@@ -35,27 +57,9 @@ const Tabs: React.FC<TabsProps> = ({ tabs, children }) => {
             </Box>
           </RectButton>
         ))}
-        <Animated.View
-          style={{
-            position: "absolute",
-            left: -5,
-            bottom: 0,
-            backgroundColor: theme.colors.primary,
-            width: 10,
-            height: 10,
-            borderRadius: 5,
-            transform: [{ translateX }],
-          }}
-        />
+        <Animated.View style={dotStyle} />
       </Box>
-      <Animated.View
-        style={{
-          flex: 1,
-          width: width * tabs.length,
-          flexDirection: "row",
-          transform: [{ translateX: multiply(-width, transition) }],
-        }}
-      >
+      <Animated.View style={tabStyle}>
         {Children.map(children, (child, i) => (
           <Box key={i} flex={1} width={width}>
             {child}
